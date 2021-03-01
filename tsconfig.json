@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
-
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
     "declaration": false,
     "inlineSourceMap": false,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "importHelpers": false,
     "isolatedModules": true,
     "noEmit": true,
-
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -21,14 +19,12 @@
     "noFallthroughCasesInSwitch": true,
     "strictPropertyInitialization": true,
     "noUncheckedIndexedAccess": true,
-
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": false,
-
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowJs": false
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }
-
