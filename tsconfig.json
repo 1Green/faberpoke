@@ -20,7 +20,7 @@
     "strictPropertyInitialization": true,
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": false,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowJs": false

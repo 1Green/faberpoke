@@ -4,7 +4,7 @@ import { Button } from './Button';
 import './header.css';
 
 export interface HeaderProps {
-  user?: {};
+  user?: Record<string,string>;
   onLogin: () => void;
   onLogout: () => void;
   onCreateAccount: () => void;
@@ -33,7 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ user, onLogin, onLogout, onCreat
         <h1>Acme</h1>
       </div>
       <div>
-        {user ? (
+        {user !== undefined ? (
           <Button size="small" onClick={onLogout} label="Log out" />
         ) : (
           <>
