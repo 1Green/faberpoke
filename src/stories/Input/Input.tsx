@@ -1,10 +1,12 @@
 import React, { FunctionComponent, InputHTMLAttributes } from 'react'
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement>
+type InputProps = InputHTMLAttributes<HTMLInputElement>
 
 const Input: FunctionComponent<InputProps> = (props) => {
+    const { value, onChange } = props;
+
     return (
-        <input {...props} />
+        <input value={value} onChange={onChange} />
     )
 }
 
