@@ -65,7 +65,6 @@ module.exports = {
             ignoreMixedLogicalExpressions: false,
           },
         ],
-        "no-shadow": ["error", { builtinGlobals: true, hoist: "functions" }],
       },
     },
     {
