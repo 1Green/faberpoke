@@ -1,6 +1,9 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
 import Input from '../../stories/Input/Input';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import SearchInput from '../../stories/SearchInput/SearchInput';
+import { ReactComponent as SearchIcon } from '../../icons/search-icon.svg';
 
 interface Pokemon {
     name: string;
@@ -35,6 +38,8 @@ const Search: FunctionComponent = () => {
 
     return (
         <div>
+            <SearchIcon style={{ height: '20px', width: '20px' }} />
+            {/* <img alt='' ={searchIcon} style={{ height: '30px', width: '30px' }} /> */}
             <Input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
             {pokemonsFiltered !== undefined && pokemonsFiltered.map((pokemon, index) => (
                 <p key={index}>{pokemon.name}</p>
