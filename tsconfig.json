@@ -6,11 +6,7 @@
     "moduleResolution": "node",
     "declaration": false,
     "inlineSourceMap": false,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react-jsx",
     "importHelpers": false,
     "isolatedModules": true,
@@ -29,10 +25,6 @@
     "resolveJsonModule": true,
     "allowJs": false
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }
