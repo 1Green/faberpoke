@@ -7,6 +7,7 @@ import { ReactComponent as SearchIcon } from '../../icons/search-icon.svg';
 
 interface Pokemon {
     name: string;
+    url: string;
 }
 
 interface FetchAllPokemonResponse {
@@ -28,22 +29,43 @@ const Search: FunctionComponent = () => {
     }, [])
  
     useEffect(() => {
-        if (searchInput.length === 0) {
-            setPokemonsFiltered(undefined);
-            return;
-        }
+        // if (searchInput.length === 0) {
+        //     setPokemonsFiltered(undefined);
+        //     return;
+        // }
         const filteredData = searchPokemonByName(searchInput, data?.results);
-        setPokemonsFiltered(filteredData);
+        console.log("filtered data: ", filteredData);
+        if (filteredData !== undefined)
+            setPokemonsFiltered(filteredData);
+        else
+            setPokemonsFiltered(data?.results);
     }, [searchInput, data, searchPokemonByName]);
 
+    const getPokemonImageURL = (url: string): string => {
+        const regex = new RegExp(/\d+(?=\/$)/);
+        const regexArr = regex.exec(url);
+        if (regexArr === null || regexArr.length === 0) return "";
+
+        const pokemonId = regexArr[0];
+        if (pokemonId === undefined) return "";
+        // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+    }
+
     return (
-        <div>
+        <div style={{ backgroundColor: "lightgrey", height: "70vh", overflow: "scroll" }}>
+            <div style={{ width: "60px", height: "10px", backgroundColor: "black", borderRadius: "80%"}} />
             <SearchIcon style={{ height: '20px', width: '20px' }} />
-            {/* <img alt='' ={searchIcon} style={{ height: '30px', width: '30px' }} /> */}
             <Input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-            {pokemonsFiltered !== undefined && pokemonsFiltered.map((pokemon, index) => (
-                <p key={index}>{pokemon.name}</p>
-            ))}
+            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: "wrap" }}>
+                {pokemonsFiltered !== undefined && pokemonsFiltered.map((pokemon, index) => {
+                    return (
+                        <div key={index} style={{ flex: '0 0 20%' }}>
+                            <img alt='' src={getPokemonImageURL(pokemon.url)} style={{ height: '80px', width: '80px' }} />
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
