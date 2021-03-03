@@ -12,8 +12,9 @@ export default {
     types: {
       typeOptions: 'select',
     },
-    abilities: { control: 'text' },
+    abilities: { control: 'object' },
     shiny: { control: 'boolean' },
+    gender: { control: 'boolean' },
     // TODO add argTypes for Pokemon
   },
 } as Meta;
@@ -29,6 +30,6 @@ Example.args = {
     { name: 'lorem', url: 'https://pokeapi.co/api/v2/ability/7/' },
     { name: 'ipsum', url: 'https://pokeapi.co/api/v2/ability/7/' },
     { name: 'dolor', url: 'https://pokeapi.co/api/v2/ability/7/' },
-  ]
+  ],
   // TODO add args
 };

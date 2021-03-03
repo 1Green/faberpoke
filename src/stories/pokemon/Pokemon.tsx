@@ -3,7 +3,7 @@ import { Ability, PokemonAbility } from './Ability';
 // import { AbilityArray } from './Ability';
 import './pokemon.css'
 import { PokemonType, Type } from './PokemonType';
-import { Shiny } from './Shiny';
+import { Button } from './Button';
 
 export type PokemonProps = {
     name: string;
@@ -15,6 +15,8 @@ export type PokemonProps = {
 
 export function Pokemon({ name, types, abilities }: PokemonProps) {
     const [shiny, setShiny] = React.useState(false);
+    // true=female, false=male
+    const [gender, setGender] = React.useState(false);
 
     if (abilities.length !== 4) {
         return (
@@ -38,7 +40,8 @@ export function Pokemon({ name, types, abilities }: PokemonProps) {
                     })
                 }
             </div >
-            <Shiny label='Shiny' onClick={() => setShiny(!shiny)} />
+            <Button label='Shiny' className="shiny" onClick={() => setShiny(!shiny)} />
+            <Button label='Gender' className="gender" onClick={() => setGender(!gender)} />
         </div>
     )
 }
