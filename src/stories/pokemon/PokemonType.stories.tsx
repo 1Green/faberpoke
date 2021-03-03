@@ -6,7 +6,6 @@ export default {
     title: 'Pokemon Types',
     component: PokemonType,
     argTypes: {
-        // TODO add argTypes for Pokemon
         type: {
             typeOptions: 'select',
         },
