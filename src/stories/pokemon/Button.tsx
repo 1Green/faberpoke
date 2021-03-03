@@ -1,17 +1,18 @@
 import React, { MouseEventHandler } from 'react';
-import './shiny.css';
+import './button.css';
 
-export interface ShinyProps {
+export interface ButtonProps {
+  className: string;
   backgroundColor?: string;
   label: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function Shiny({ backgroundColor, label, onClick }: ShinyProps) {
+export function Button({ className, backgroundColor, label, onClick }: ButtonProps) {
   return (
     <button
       type="button"
-      className='pokemon-shiny-button'
+      className={`pokemon-${className}-button`}
       style={{ backgroundColor: backgroundColor }}
       onClick={onClick}
     >
