@@ -21,10 +21,52 @@ export default {
 
 const Template: Story<PokemonProps> = (args) => <Pokemon {...args} />;
 
-export const Example = Template.bind({});
-Example.args = {
+export const Front = Template.bind({});
+Front.args = {
   name: 'Ditto',
-  types: ['fire', 'water'],
+  types: [
+    {
+      "slot": 1,
+      "type": {
+        "name": "fire",
+        "url": "https://pokeapi.co/api/v2/type/10/"
+      }
+    },
+    {
+      "slot": 2,
+      "type": {
+        "name": "flying",
+        "url": "https://pokeapi.co/api/v2/type/3/"
+      }
+    }
+  ],
+  abilities: [
+    { name: 'limber', url: 'https://pokeapi.co/api/v2/ability/7/' },
+    { name: 'lorem', url: 'https://pokeapi.co/api/v2/ability/7/' },
+    { name: 'ipsum', url: 'https://pokeapi.co/api/v2/ability/7/' },
+    { name: 'dolor', url: 'https://pokeapi.co/api/v2/ability/7/' },
+  ],
+  // TODO add args
+};
+export const Back = Template.bind({});
+Back.args = {
+  name: 'Ditto',
+  types: [
+    {
+      "slot": 1,
+      "type": {
+        "name": "fire",
+        "url": "https://pokeapi.co/api/v2/type/10/"
+      }
+    },
+    {
+      "slot": 2,
+      "type": {
+        "name": "flying",
+        "url": "https://pokeapi.co/api/v2/type/3/"
+      }
+    }
+  ],
   abilities: [
     { name: 'limber', url: 'https://pokeapi.co/api/v2/ability/7/' },
     { name: 'lorem', url: 'https://pokeapi.co/api/v2/ability/7/' },

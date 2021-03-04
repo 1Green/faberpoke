@@ -16,5 +16,8 @@ const Template: Story<PokemonTypeProps> = (args) => <PokemonType {...args} />;
 
 export const Card = Template.bind({});
 Card.args = {
-    type: 'fire'
+    type: {
+        "name": "fire",
+        "url": "https://pokeapi.co/api/v2/type/10/"
+    }
 };
