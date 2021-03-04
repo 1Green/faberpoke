@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "skipLibCheck": true,
     "module": "esnext",
     "target": "esnext",

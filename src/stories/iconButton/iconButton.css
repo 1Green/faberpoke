@@ -1,0 +1,24 @@
+.icon-button {
+  border: none;
+  outline: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.icon-button:hover {
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.icon-button--rounded {
+  border-radius: 50%;
+}
+
+.icon-button--simple {
+  background: none;
+}
+
+.icon-button--simple:hover {
+  box-shadow: none;
+}
