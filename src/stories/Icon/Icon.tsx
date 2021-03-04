@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
+import { ReactComponent as SearchIcon } from './icon-svgs/search.svg';
 import './icon.css';
 
 type IconKey = 'search';
