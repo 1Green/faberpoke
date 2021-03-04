@@ -8,7 +8,6 @@ export default {
     title: 'Example/Icon',
     component: Icon,
     argTypes: {
-      name: { control: 'text' },
       color: { control: 'color' },
       style: { control: 'object' }
     },
