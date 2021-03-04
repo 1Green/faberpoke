@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import { ReactComponent as SearchIcon } from './icon-svgs/search.svg';
+import { ReactComponent as CloseIcon } from './icon-svgs/close.svg';
 import './icon.css';
 
-type IconKey = 'search';
+type IconKey = 'search' | 'close';
 
 type Dictionary<T> = {
     [Key in IconKey]: T;
@@ -13,7 +14,8 @@ type Svg = React.FunctionComponent<React.SVGProps<SVGSVGElement> & {
 }>
 
 const icons: Dictionary<Svg> = {
-    "search": SearchIcon
+    'search': SearchIcon,
+    'close': CloseIcon
 }
 
 export interface IconProps {

@@ -1,14 +1,27 @@
 import React, { FunctionComponent, InputHTMLAttributes } from 'react'
+import Icon from 'stories/icon/Icon';
+import './input-search.css';
 
-export type InputSearchProps = InputHTMLAttributes<HTMLInputElement>;
+export type InputSearchProps = InputHTMLAttributes<HTMLInputElement> & {
+    // iconProps?: Omit<IconProps, 'name'>;
+};
 
-const InputSearch: FunctionComponent<InputSearchProps> = ({
+export const InputSearch: FunctionComponent<InputSearchProps> = ({
     value,
-    onChange
+    onChange,
+    className,
+    ...rest
 }) => {
     return (
-        <div>
-           <input value={value} onChange={onChange} /> 
+        <div className='input-search-wrapper'>
+            <Icon name='search' />
+            <input
+                value={value}
+                onChange={onChange}
+                className={['input-search', className].join(' ')}
+                {...rest}
+            />
+            <Icon name='close' size='small' color='red' />
         </div>
     )
 }
