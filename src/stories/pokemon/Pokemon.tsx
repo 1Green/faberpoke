@@ -3,8 +3,9 @@ import { Ability, PokemonAbility } from './Ability';
 // import { AbilityArray } from './Ability';
 import './pokemon.css'
 import { PokemonType } from './PokemonType';
-import { Button } from './Button';
-import { TypeSlot } from './PokemonParser';
+import { ButtonImg } from './ButtonImg';
+import { Sprites, SpritesImages, TypeSlot } from './PokemonParser';
+import { getSpritesKey } from './getSprite';
 
 export type PokemonProps = {
     name: string;
@@ -12,22 +13,34 @@ export type PokemonProps = {
     weight: number;
     types: TypeSlot[];
     abilities: Ability[];
-    // sprites: string[];
+    sprites: Sprites;
     // stats: string[];
 }
 
-export function Pokemon({ name, order, weight, types, abilities }: PokemonProps) {
+export type Orientation = 'back' | 'front'
+export type Gender = 'default' | 'female'
+
+export function Pokemon({ name, order, weight, types, sprites, abilities }: PokemonProps) {
     const [shiny, setShiny] = React.useState(false);
-    // true=female, false=male
-    const [gender, setGender] = React.useState(false);
+    const [orientation, setOrientation] = React.useState<Orientation>('front');
+    const [gender, setGender] = React.useState<Gender>('default');
+
+    const spriteKey: keyof SpritesImages = getSpritesKey(orientation, shiny, gender)
+
+    // why do i need to put as string ???
+    const spriteUrl = sprites[spriteKey] !== null ? sprites[spriteKey] as string : "./img/no_sprite.png"
+    console.log(spriteKey)
 
     if (abilities.length !== 4) {
         return (
             <div> Error: abilities need to have a length of 4</div>
         );
     }
+
+
     return (
         <div className="pokemon-card-container">
+            <img src={spriteUrl} alt={name} />
             <div className="pokemon-name">{name}</div>
             <div className="pokemon-order">{order}</div>
             <div className="pokemon-weight">{weight}</div>
@@ -49,12 +62,9 @@ export function Pokemon({ name, order, weight, types, abilities }: PokemonProps)
                     })
                 }
             </div >
-            <Button label='Shiny' onClick={() => setShiny(!shiny)} />
-            <Button label='Gender' onClick={() => setGender(!gender)} />
+            <ButtonImg img='gender' onClick={() => setGender((prev) => prev === 'default' ? 'female' : 'default')} />
+            <ButtonImg img='shiny' onClick={() => setShiny(!shiny)} />
+            <ButtonImg img='orientation' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
         </div>
     )
-}
-
-export function parse(rawJson: string) {
-    JSON.parse(rawJson);
 }

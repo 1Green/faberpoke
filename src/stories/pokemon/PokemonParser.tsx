@@ -11,10 +11,11 @@ export default function PokemonParser({ jsonFromApi }: PokemonParserProps) {
     const order: number = jsonFromApi.order;
     const weight: number = jsonFromApi.weight;
     const types: TypeSlot[] = jsonFromApi.types;
+    const sprites: Sprites = jsonFromApi.sprites;
 
     // const abilities = jsonFromApi.name;
     return (
-        <Pokemon name={name} order={order} weight={weight} types={types} abilities={[
+        <Pokemon name={name} order={order} weight={weight} types={types} sprites={sprites} abilities={[
             { name: 'limber', url: 'https://pokeapi.co/api/v2/ability/7/' },
             { name: 'lorem', url: 'https://pokeapi.co/api/v2/ability/7/' },
             { name: 'ipsum', url: 'https://pokeapi.co/api/v2/ability/7/' },
@@ -323,9 +324,11 @@ export interface Sprites {
     front_female: string | null;
     front_shiny: string;
     front_shiny_female: string | null;
-    other: Other;
-    versions: Versions;
+    other?: Other;
+    versions?: Versions;
 }
+
+export type SpritesImages = Omit<Sprites, 'other' | 'versions'>
 
 export interface Stat2 {
     name: string;
