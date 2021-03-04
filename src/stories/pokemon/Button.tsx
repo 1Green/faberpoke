@@ -2,18 +2,24 @@ import React, { MouseEventHandler } from 'react';
 import './button.css';
 
 export interface ButtonProps {
-  className: string;
   backgroundColor?: string;
+  imgUrl?: string;
   label: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function Button({ className, backgroundColor, label, onClick }: ButtonProps) {
+export function Button({ backgroundColor, imgUrl, label, onClick }: ButtonProps) {
+  if (imgUrl === undefined) {
+    imgUrl = ""
+  }
+  const styleButton = {
+    backgroundColor: backgroundColor,
+    backgroundImage: `url(${imgUrl})`,
+  }
   return (
     <button
       type="button"
-      className={`pokemon-${className}-button`}
-      style={{ backgroundColor: backgroundColor }}
+      style={styleButton}
       onClick={onClick}
     >
       {label}
