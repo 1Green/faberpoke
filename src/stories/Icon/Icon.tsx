@@ -1,23 +1,15 @@
-import React, { FunctionComponent } from 'react'
-import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
+import React, { FunctionComponent, FC, SVGProps } from 'react'
+import { ReactComponent as SearchIcon } from './icon-svgs/search.svg';
 import './icon.css';
 
-type IconKey = 'search';
-
-type Dictionary<T> = {
-    [Key in IconKey]: T;
-};
-
-type Svg = React.FunctionComponent<React.SVGProps<SVGSVGElement> & {
-    title?: string | undefined;
-}>
-
-const icons: Dictionary<Svg> = {
+type IconKeys = 'search';
+type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
+const icons: Icons = {
     "search": SearchIcon
 }
 
 export interface IconProps {
-    name: IconKey;
+    name: IconKeys;
     color?: string;
     size?: 'small' | 'medium' | 'large';
     style?: React.CSSProperties;
