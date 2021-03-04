@@ -1,26 +1,45 @@
 import React, { FunctionComponent } from 'react'
-import { ReactComponent as SearchIcon } from '../assets/search.svg';
+import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
+import './icon.css';
 
-interface Dictionary<T> {
-    [Key: string]: T;
-}
+type IconKey = 'search';
 
-const icons: Dictionary<React.FunctionComponent> = {
+type Dictionary<T> = {
+    [Key in IconKey]: T;
+};
+
+type Svg = React.FunctionComponent<React.SVGProps<SVGSVGElement> & {
+    title?: string | undefined;
+}>
+
+const icons: Dictionary<Svg> = {
     "search": SearchIcon
 }
 
-interface IconProps {
-    name: string;
+export interface IconProps {
+    name: IconKey;
+    color?: string;
+    size?: 'small' | 'medium' | 'large';
+    style?: React.CSSProperties;
+    className?: string;
 }
 
-const Icon: FunctionComponent<IconProps> = (props) => {
-    const { name } = props;
+export const Icon: FunctionComponent<IconProps> = ({
+    name,
+    color,
+    className,
+    size = 'medium',
+    ...rest
+}) => {
     const CustomIcon = icons[name];
 
-    if (CustomIcon === undefined) return null;
     return (
-        <CustomIcon />
+        <CustomIcon
+            fill={color}
+            className={[className, `icon--${size}`].join(' ')}
+            {...rest}
+        />
     )
 }
 
-export default Icon
+export default Icon;
