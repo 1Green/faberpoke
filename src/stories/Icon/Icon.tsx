@@ -1,4 +1,5 @@
 import React, { FunctionComponent, FC, SVGProps } from 'react'
+import cx from 'classnames';
 import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
 import './icon.css';
 
@@ -21,15 +22,14 @@ export const Icon: FunctionComponent<IconProps> = ({
     color,
     className,
     size = 'medium',
-    ...rest
 }) => {
     const CustomIcon = icons[name];
+    const iconClasses = cx(`icon--${size}`, className);
 
     return (
         <CustomIcon
             fill={color}
-            className={[className, `icon--${size}`].join(' ')}
-            {...rest}
+            className={iconClasses}
         />
     )
 }
