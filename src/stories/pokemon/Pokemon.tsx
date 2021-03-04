@@ -2,18 +2,21 @@ import * as React from 'react';
 import { Ability, PokemonAbility } from './Ability';
 // import { AbilityArray } from './Ability';
 import './pokemon.css'
-import { PokemonType, Type } from './PokemonType';
+import { PokemonType } from './PokemonType';
 import { Button } from './Button';
+import { TypeSlot } from './PokemonParser';
 
 export type PokemonProps = {
     name: string;
-    types: Type[];
+    order: number;
+    weight: number;
+    types: TypeSlot[];
     abilities: Ability[];
     // sprites: string[];
     // stats: string[];
 }
 
-export function Pokemon({ name, types, abilities }: PokemonProps) {
+export function Pokemon({ name, order, weight, types, abilities }: PokemonProps) {
     const [shiny, setShiny] = React.useState(false);
     // true=female, false=male
     const [gender, setGender] = React.useState(false);
@@ -26,10 +29,16 @@ export function Pokemon({ name, types, abilities }: PokemonProps) {
     return (
         <div className="pokemon-card-container">
             <div className="pokemon-name">{name}</div>
+            <div className="pokemon-order">{order}</div>
+            <div className="pokemon-weight">{weight}</div>
             <div className="pokemon-type-container">
                 {
-                    types.map(type => {
-                        return <PokemonType key={type} type={type} />
+                    types.map(typeSlot => {
+                        let typeImg;
+                        if (typeSlot.type.name !== 'unknown' && typeSlot.type.name !== 'shadow') {
+                            typeImg = `./img/${typeSlot.type.name}.png`
+                        }
+                        return <PokemonType key={typeSlot.type.name} type={typeSlot.type} img={typeImg} />
                     })
                 }
             </div >
@@ -40,8 +49,12 @@ export function Pokemon({ name, types, abilities }: PokemonProps) {
                     })
                 }
             </div >
-            <Button label='Shiny' className="shiny" onClick={() => setShiny(!shiny)} />
-            <Button label='Gender' className="gender" onClick={() => setGender(!gender)} />
+            <Button label='Shiny' onClick={() => setShiny(!shiny)} />
+            <Button label='Gender' onClick={() => setGender(!gender)} />
         </div>
     )
+}
+
+export function parse(rawJson: string) {
+    JSON.parse(rawJson);
 }

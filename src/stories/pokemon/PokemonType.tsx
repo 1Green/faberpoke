@@ -1,14 +1,12 @@
 import * as React from 'react';
+import { Type } from './PokemonParser';
 import './pokemontype.css'
-
-export type Type = "normal" | "fighting" | "flying" | "poison" | "ground" | "rock" | "bug" | "ghost" | "steel" | "fire" | "water" | "grass" | "electric" | "psychic" | "ice" | "dragon" | "dark" | "fairy" | "unknown" | "shadow";
 
 export type PokemonTypeProps = {
     type: Type;
+    img: string | undefined;
 }
 
-export function PokemonType({ type }: PokemonTypeProps) {
-    return (
-        <div className="pokemon-type">{type}</div>
-    )
+export function PokemonType({ type, img }: PokemonTypeProps) {
+    return img !== undefined ? <img src={img} alt={type.name} /> : null;
 }
