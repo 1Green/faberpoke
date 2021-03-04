@@ -1,0 +1,11 @@
+.pagination {
+  list-style-type: none;
+}
+
+.pagination > li {
+  display: inline;
+}
+
+.page-link-wrapper {
+  padding: 10px;
+}
