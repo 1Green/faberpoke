@@ -1,43 +1,32 @@
 import React from 'react'
+import { capitalizeFirstLetter } from './functions';
 import { Pokemon } from './Pokemon'
 
 export type PokemonParserProps = {
     jsonFromApi: PokeApiResponse;
 }
 
-export default function PokemonParser({ jsonFromApi }: PokemonParserProps) {
+export function PokemonParser({ jsonFromApi }: PokemonParserProps) {
     console.log(jsonFromApi);
     const name: string = capitalizeFirstLetter(jsonFromApi.name);
     const order: number = jsonFromApi.order;
     const weight: number = jsonFromApi.weight;
+    const height: number = jsonFromApi.height;
     const types: TypeSlot[] = jsonFromApi.types;
     const sprites: Sprites = jsonFromApi.sprites;
-
-    // const abilities = jsonFromApi.name;
+    const ablitities: AbilitySlot[] = jsonFromApi.abilities
     return (
-        <Pokemon name={name} order={order} weight={weight} types={types} sprites={sprites} abilities={[
-            { name: 'limber', url: 'https://pokeapi.co/api/v2/ability/7/' },
-            { name: 'lorem', url: 'https://pokeapi.co/api/v2/ability/7/' },
-            { name: 'ipsum', url: 'https://pokeapi.co/api/v2/ability/7/' },
-            { name: 'dolor', url: 'https://pokeapi.co/api/v2/ability/7/' },
-        ]} />
+        <Pokemon name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={ablitities} />
     )
 }
 
-const capitalizeFirstLetter = ([first, ...rest]: string, locale = navigator.language) => {
-    if (first !== undefined) {
-        return first.toLocaleUpperCase(locale) + rest.join('')
-    }
-    else { return '' }
-}
-
-export interface Ability2 {
+export interface Ability {
     name: string;
     url: string;
 }
 
-export interface Ability {
-    ability: Ability2;
+export interface AbilitySlot {
+    ability: Ability;
     is_hidden: boolean;
     slot: number;
 }
@@ -352,7 +341,7 @@ export interface TypeSlot {
 }
 
 export interface PokeApiResponse {
-    abilities: Ability[];
+    abilities: AbilitySlot[];
     base_experience: number;
     forms: Form[];
     game_indices: GameIndice[];

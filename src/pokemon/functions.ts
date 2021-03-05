@@ -9,3 +9,10 @@ export function getSpritesKey(orientation: Orientation, shiny:boolean, gender: G
     ]
     return key.filter((value) => value!==undefined).join("_") as keyof SpritesImages
 }
+
+export function capitalizeFirstLetter([first, ...rest]: string, locale = navigator.language) :string{
+    if (first !== undefined) {
+        return first.toLocaleUpperCase(locale) + rest.join('')
+    }
+    else { return '' }
+}

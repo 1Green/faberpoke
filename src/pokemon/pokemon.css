@@ -1,0 +1,33 @@
+.pokemon-card-container {
+  width: 25%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #d6092d;
+}
+
+.pokemon-type-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pokemon-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pokemon-name {
+  color: white;
+  font-weight: bold;
+  font-family: Raleway;
+  font-size: 200%;
+}
+
+.pokemon-img {
+  max-width: 100%;
+  max-height: 100%;
+}

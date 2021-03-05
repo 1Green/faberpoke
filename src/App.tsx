@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-// import * as rawJson from './pikachu.json'
-import PokemonParser from './stories/pokemon/PokemonParser';
-import rawJson from './pikachu.json';
+import { PokemonParser } from './pokemon/PokemonParser';
+import rawJson from './json/pikachu.json';
 
 function App() {
   return (
