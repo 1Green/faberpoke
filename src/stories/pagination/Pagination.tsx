@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
+import cx from 'classnames';
 import './pagination.css';
 
 type PaginationDataType = {
@@ -8,20 +9,18 @@ type PaginationDataType = {
     totalRecords: number;
 }
 
-interface PaginationProps {
+export type PaginationProps = {
     totalRecords?: number;
     pageLimit?: number;
-    pageNeighbours?: number;
     onPageChanged?: (data: PaginationDataType) => void;
 }
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
 
-const Pagination: FunctionComponent<PaginationProps> = ({
+export const Pagination: FunctionComponent<PaginationProps> = ({
     totalRecords = 0,
     pageLimit = 20,
-    pageNeighbours = 0,
     onPageChanged
 }) => {
     const totalPages: number = Math.ceil(totalRecords / pageLimit);
@@ -38,12 +37,12 @@ const Pagination: FunctionComponent<PaginationProps> = ({
          * totalNumbers: the total page numbers to show on the control
          * totalBlocks: totalNumbers + 2 to cover for the left(<) and right(>) controls
          */
-        const totalNumbers = (pageNeighbours * 2) + 3;
+        const totalNumbers = 3;
         const totalBlocks = totalNumbers + 2;
 
         if (totalPages > totalBlocks) {
-          const startPage = Math.max(2, currentPage - pageNeighbours);
-          const endPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
+          const startPage = Math.max(2, currentPage);
+          const endPage = Math.min(totalPages - 1, currentPage);
           let pages: Array<string | number> = getPageRange(startPage, endPage);
     
           /**
@@ -94,12 +93,12 @@ const Pagination: FunctionComponent<PaginationProps> = ({
 
     const handleMoveLeft = (evt: React.MouseEvent) => {
         evt.preventDefault();
-        goToPage(currentPage - (pageNeighbours * 2) - 1);
+        goToPage(currentPage - 1);
     }
 
     const handleMoveRight = (evt: React.MouseEvent) => {
         evt.preventDefault();
-        goToPage(currentPage + (pageNeighbours * 2) + 1)
+        goToPage(currentPage + 1)
     }
 
     useEffect(() => {
@@ -114,27 +113,29 @@ const Pagination: FunctionComponent<PaginationProps> = ({
 
     const pages = getPageNumbers();
     return (
-        <div>
-            <ul className='pagination'>
-                { pages.map((page, index) => {
-                    if (page === LEFT_PAGE) return (
-                        <li key={index} className='page-link-wrapper'>
-                            <a href='#' onClick={handleMoveLeft}>Prev</a>
-                        </li>
-                    )
-                    if (page === RIGHT_PAGE) return (
-                        <li key={index} className='page-link-wrapper'>
-                            <a href='#' onClick={handleMoveRight}>Next</a>
-                        </li>
-                    )
-                    return (
-                        <li key={index} className='page-link-wrapper'>
-                            <a href='#' onClick={handleClick(page)}>{page}</a>
-                        </li>
-                    )
-                })}
-            </ul>
-        </div>
+        <ul className='pagination'>
+            {pages.map((page, index) => {
+                if (page === LEFT_PAGE) return (
+                    <li key={index} className='page-link-wrapper' onClick={handleMoveLeft}>
+                        Prev
+                    </li>
+                )
+                if (page === RIGHT_PAGE) return (
+                    <li key={index} className='page-link-wrapper' onClick={handleMoveRight}>
+                        Next
+                    </li>
+                )
+
+                const pageLinkClasses = cx('page-link-wrapper', {
+                    ['page-link-wrapper--active']: currentPage === page
+                })
+                return (
+                    <li key={index} className={pageLinkClasses} onClick={handleClick(page)}>
+                        {page}
+                    </li>
+                )
+            })}
+        </ul>
     )
 }
 
