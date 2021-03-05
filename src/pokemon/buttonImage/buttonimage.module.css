@@ -1,11 +1,11 @@
-.buttonimg {
+.buttonImage {
   display: flex;
   flex-direction: row;
   height: 15%;
   width: 15%;
 }
 
-.imginside {
+.imageInside {
   max-width: 100%;
   max-height: 100%;
 }

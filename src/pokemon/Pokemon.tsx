@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { PokemonAbility } from './ability/PokemonAbility';
-import './pokemon.css'
+import styles from './pokemon.module.css'
 import { PokemonType } from './type/PokemonType';
-import { ButtonImg } from './buttonImg/ButtonImg';
-import { AbilitySlot, Sprites, SpritesImages, Stat, TypeSlot } from './PokemonParser';
+import { ButtonImage } from './buttonImage/ButtonImage';
+import { AbilitySlot, Sprites, SpritesImages, Statistics, TypeSlot } from './PokemonParser';
 import { getSpritesKey, capitalizeFirstLetter } from './functions';
-import { PokemonStat } from './statistic/PokemonStat';
+import { PokemonStatistic } from './statistic/PokemonStatistic';
 
 export type PokemonProps = {
     name: string;
@@ -15,42 +15,41 @@ export type PokemonProps = {
     types: TypeSlot[];
     abilities: AbilitySlot[];
     sprites: Sprites;
-    stats: Stat[];
+    statistics: Statistics[];
 }
 
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
 
-export function Pokemon({ name, order, weight, height, types, sprites, abilities, stats }: PokemonProps) {
+export function Pokemon({ name, order, weight, height, types, sprites, abilities, statistics }: PokemonProps) {
     const [shiny, setShiny] = React.useState(false);
     const [orientation, setOrientation] = React.useState<Orientation>('front');
     const [gender, setGender] = React.useState<Gender>('default');
 
     const spriteKey: keyof SpritesImages = getSpritesKey(orientation, shiny, gender)
 
-    // why do i need to put as string ???
-    const spriteUrl = sprites[spriteKey] !== null ? sprites[spriteKey] as string : "./img/no_sprite.png"
+    const spriteUrl = sprites[spriteKey] ?? "./img/no_sprite.png"
     console.log(spriteKey)
 
     return (
-        <div className="pokemon-card-container">
-            <div className="pokemon-order">{`#${order}`}</div>
-            <img className="pokemon-img" src={spriteUrl} alt={name} />
-            <div className="pokemon-name">{name}</div>
-            <div className="pokemon-weight">{weight}</div>
-            <div className="pokemon-height">{height}</div>
-            <div className="pokemon-type-container">
+        <div className={styles.cardContainer}>
+            <div className={styles.order}>{`#${order}`}</div>
+            <img className={styles.image} src={spriteUrl} alt={name} />
+            <div className={styles.name}>{capitalizeFirstLetter(name).replace('_', ' ')}</div>
+            <div className={styles.weight}>{weight}</div>
+            <div className={styles.height}>{height}</div>
+            <div className={styles.typeContainer}>
                 {
                     types.map(typeSlot => {
-                        let typeImg;
+                        let typeImage;
                         if (typeSlot.type.name !== 'unknown' && typeSlot.type.name !== 'shadow') {
-                            typeImg = `./img/${typeSlot.type.name}.png`
+                            typeImage = `./img/${typeSlot.type.name}.png`
                         }
-                        return <PokemonType key={typeSlot.type.name} type={typeSlot.type} img={typeImg} />
+                        return <PokemonType key={typeSlot.type.name} type={typeSlot.type} imageUrl={typeImage} />
                     })
                 }
             </div >
-            <div className="pokemon-ability-container">
+            <div className={styles.pokemonAbilityContainer}>
                 {
                     abilities.map(abilitySlot => {
                         // TODO get text from the url : abilitySlot.url
@@ -59,17 +58,17 @@ export function Pokemon({ name, order, weight, height, types, sprites, abilities
                     })
                 }
             </div >
-            <div className="pokemon-stat-container">
+            <div className={styles.pokemonStatisticContainer}>
                 {
-                    stats.map(statElement => {
-                        const name: string = capitalizeFirstLetter(statElement.stat.name);
-                        return < PokemonStat key={statElement.stat.name} name={name.replace('-', ' ')} value={statElement.base_stat} />
+                    statistics.map(statisticElement => {
+                        const name: string = capitalizeFirstLetter(statisticElement.stat.name);
+                        return < PokemonStatistic key={statisticElement.stat.name} name={name.replace('-', ' ')} value={statisticElement.base_stat} />
                     })
                 }
             </div >
-            <div className="pokemon-button-container"><ButtonImg img='gender' onClick={() => setGender((prev) => prev === 'default' ? 'female' : 'default')} />
-                <ButtonImg img='shiny' onClick={() => setShiny(!shiny)} />
-                <ButtonImg img='orientation' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
+            <div className={styles.pokemonButtonContainer}><ButtonImage image='gender' onClick={() => setGender((prev) => prev === 'default' ? 'female' : 'default')} />
+                <ButtonImage image='shiny' onClick={() => setShiny(!shiny)} />
+                <ButtonImage image='orientation' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
             </div></div>
     )
 }

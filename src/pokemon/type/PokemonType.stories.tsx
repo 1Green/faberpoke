@@ -14,11 +14,11 @@ export default {
 
 const Template: Story<PokemonTypeProps> = (args) => <PokemonType {...args} />;
 
-export const Card = Template.bind({});
-Card.args = {
+export const Example = Template.bind({});
+Example.args = {
     type: {
         "name": "electric",
         "url": "https://pokeapi.co/api/v2/type/13/"
     },
-    img: "./img/electric.png"
+    imageUrl: "./img/electric.png"
 };

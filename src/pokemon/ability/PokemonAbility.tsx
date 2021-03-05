@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './pokemonability.css'
+import styles from './pokemonability.module.css'
 
 export type PokemonAbilityProps = {
     name: string,
@@ -8,11 +8,11 @@ export type PokemonAbilityProps = {
 
 export function PokemonAbility({ name, abilityText }: PokemonAbilityProps) {
     return (
-        <div className="pokemon-ability-container">
-            <div className="pokemon-ability-name">
+        <div className={styles.pokemonAbilityContainer}>
+            <div className={styles.pokemonAbilityName}>
                 {name}
             </div>
-            <div className="pokemon-ability-url">
+            <div className={styles.pokemonAbilityText}>
                 <p>{abilityText}</p>
             </div>
         </div>
