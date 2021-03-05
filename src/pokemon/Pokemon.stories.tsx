@@ -14,9 +14,10 @@ export default {
       typeOptions: 'select',
     },
     abilities: { control: 'object' },
-    shiny: { control: 'boolean' },
     gender: { control: 'boolean' },
-    // TODO add argTypes for Pokemon
+    shiny: { control: 'boolean' },
+    orientation: { control: 'boolean' },
+
   },
 } as Meta;
 

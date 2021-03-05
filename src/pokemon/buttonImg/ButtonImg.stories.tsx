@@ -28,8 +28,3 @@ export const Orientation = Template.bind({});
 Orientation.args = {
   img: 'orientation',
 };
-
-// Assume image.png is located in the "public" directory.
-export const withAnImage = () => (
-  <img src="/img/gender.png" alt="gender" />
-);
