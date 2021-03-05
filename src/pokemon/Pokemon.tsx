@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { Ability, PokemonAbility } from './Ability';
-// import { AbilityArray } from './Ability';
+import { PokemonAbility } from './ability/PokemonAbility';
 import './pokemon.css'
-import { PokemonType } from './PokemonType';
-import { ButtonImg } from './ButtonImg';
-import { Sprites, SpritesImages, TypeSlot } from './PokemonParser';
-import { getSpritesKey } from './getSprite';
+import { PokemonType } from './type/PokemonType';
+import { ButtonImg } from './buttonImg/ButtonImg';
+import { AbilitySlot, Sprites, SpritesImages, TypeSlot } from './PokemonParser';
+import { getSpritesKey, capitalizeFirstLetter } from './functions';
 
 export type PokemonProps = {
     name: string;
     order: number;
     weight: number;
+    height: number,
     types: TypeSlot[];
-    abilities: Ability[];
+    abilities: AbilitySlot[];
     sprites: Sprites;
     // stats: string[];
 }
@@ -20,7 +20,7 @@ export type PokemonProps = {
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
 
-export function Pokemon({ name, order, weight, types, sprites, abilities }: PokemonProps) {
+export function Pokemon({ name, order, weight, height, types, sprites, abilities }: PokemonProps) {
     const [shiny, setShiny] = React.useState(false);
     const [orientation, setOrientation] = React.useState<Orientation>('front');
     const [gender, setGender] = React.useState<Gender>('default');
@@ -31,19 +31,13 @@ export function Pokemon({ name, order, weight, types, sprites, abilities }: Poke
     const spriteUrl = sprites[spriteKey] !== null ? sprites[spriteKey] as string : "./img/no_sprite.png"
     console.log(spriteKey)
 
-    if (abilities.length !== 4) {
-        return (
-            <div> Error: abilities need to have a length of 4</div>
-        );
-    }
-
-
     return (
         <div className="pokemon-card-container">
-            <img src={spriteUrl} alt={name} />
+            <div className="pokemon-order">{`#${order}`}</div>
+            <img className="pokemon-img" src={spriteUrl} alt={name} />
             <div className="pokemon-name">{name}</div>
-            <div className="pokemon-order">{order}</div>
             <div className="pokemon-weight">{weight}</div>
+            <div className="pokemon-height">{height}</div>
             <div className="pokemon-type-container">
                 {
                     types.map(typeSlot => {
@@ -57,14 +51,16 @@ export function Pokemon({ name, order, weight, types, sprites, abilities }: Poke
             </div >
             <div className="pokemon-ability-container">
                 {
-                    abilities.map(ability => {
-                        return <PokemonAbility key={ability.name} ability={ability} />
+                    abilities.map(abilitySlot => {
+                        // TODO get text from the url : abilitySlot.url
+                        const name: string = capitalizeFirstLetter(abilitySlot.ability.name);
+                        return < PokemonAbility key={abilitySlot.ability.name} name={name.replace('-', ' ')} abilityText="Lorem ipsum, dolor sit amet consectetur adipisicing elit." />
                     })
                 }
             </div >
-            <ButtonImg img='gender' onClick={() => setGender((prev) => prev === 'default' ? 'female' : 'default')} />
-            <ButtonImg img='shiny' onClick={() => setShiny(!shiny)} />
-            <ButtonImg img='orientation' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
-        </div>
+            <div className="pokemon-button-container"><ButtonImg img='gender' onClick={() => setGender((prev) => prev === 'default' ? 'female' : 'default')} />
+                <ButtonImg img='shiny' onClick={() => setShiny(!shiny)} />
+                <ButtonImg img='orientation' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
+            </div></div>
     )
 }

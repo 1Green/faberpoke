@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 
-import { PokemonAbilityProps, PokemonAbility } from './Ability';
+import { PokemonAbilityProps, PokemonAbility } from './PokemonAbility';
 
 export default {
     title: 'Abilities',
@@ -14,8 +14,7 @@ const Template: Story<PokemonAbilityProps> = (args) => <PokemonAbility {...args}
 
 export const Card = Template.bind({});
 Card.args = {
-    ability: {
-        name: "limber",
-        url: "https://pokeapi.co/api/v2/ability/7/"
-    }
+    name: "limber",
+    abilityText: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './buttonimg.module.css'
 export interface ButtonImgProps {
   img: 'orientation' | 'gender' | 'shiny';
   onClick: () => void;
@@ -13,15 +13,16 @@ const imgDico = {
 
 export function ButtonImg({ img, onClick }: ButtonImgProps) {
 
-  const imgUrl = imgDico[img];
+  const imgUrl: string = imgDico[img];
 
   return (
     <button
-      className={`pokemon-button-${img}`}
+      className={styles.buttonimg}
       type="button"
       onClick={onClick}
     >
-      <img src={imgUrl} alt={`${img} button`} />
+      <img className={styles.imginside} src={imgUrl} alt={`${img} button`} />
+
     </button>
   )
 }
