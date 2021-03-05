@@ -12,8 +12,8 @@ export default {
 
 const Template: Story<PokemonAbilityProps> = (args) => <PokemonAbility {...args} />;
 
-export const Card = Template.bind({});
-Card.args = {
+export const Example = Template.bind({});
+Example.args = {
     name: "limber",
     abilityText: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
 

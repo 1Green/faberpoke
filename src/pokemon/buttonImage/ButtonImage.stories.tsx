@@ -1,11 +1,11 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ButtonImg, ButtonImgProps } from './ButtonImg';
+import { ButtonImage, ButtonImageProps } from './ButtonImage';
 
 export default {
   title: 'Button',
-  component: ButtonImg,
+  component: ButtonImage,
   argTypes: {
     backgroundColor: { control: 'color' },
     label: { control: 'text' },
@@ -14,17 +14,17 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ButtonImgProps> = (args) => <ButtonImg {...args} />;
+const Template: Story<ButtonImageProps> = (args) => <ButtonImage {...args} />;
 
 export const Shiny = Template.bind({});
 Shiny.args = {
-  img: 'shiny',
+  image: 'shiny',
 };
 export const Gender = Template.bind({});
 Gender.args = {
-  img: 'gender',
+  image: 'gender',
 };
 export const Orientation = Template.bind({});
 Orientation.args = {
-  img: 'orientation',
+  image: 'orientation',
 };

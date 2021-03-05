@@ -1,5 +1,4 @@
 import React from 'react'
-import { capitalizeFirstLetter } from './functions';
 import { Pokemon } from './Pokemon'
 
 export type PokemonParserProps = {
@@ -8,16 +7,9 @@ export type PokemonParserProps = {
 
 export function PokemonParser({ jsonFromApi }: PokemonParserProps) {
     console.log(jsonFromApi);
-    const name: string = capitalizeFirstLetter(jsonFromApi.name);
-    const order: number = jsonFromApi.order;
-    const weight: number = jsonFromApi.weight;
-    const height: number = jsonFromApi.height;
-    const types: TypeSlot[] = jsonFromApi.types;
-    const sprites: Sprites = jsonFromApi.sprites;
-    const ablitities: AbilitySlot[] = jsonFromApi.abilities;
-    const stats: Stat[] = jsonFromApi.stats;
+    const { name, order, weight, height, types, sprites, abilities, stats } = jsonFromApi;
     return (
-        <Pokemon name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={ablitities} stats={stats} />
+        <Pokemon name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={abilities} statistics={stats} />
     )
 }
 
@@ -325,7 +317,7 @@ export interface Stat2 {
     url: string;
 }
 
-export interface Stat {
+export interface Statistics {
     base_stat: number;
     effort: number;
     stat: Stat2;
@@ -357,7 +349,7 @@ export interface PokeApiResponse {
     past_types?: never[]; //any
     species: Species;
     sprites: Sprites;
-    stats: Stat[];
+    stats: Statistics[];
     types: TypeSlot[];
     weight: number;
 }
