@@ -9,7 +9,8 @@ export default {
     component: InputSearch,
     argTypes: {
       value: { control: 'text' },
-      iconProps: { control: 'object' }
+      color: { control: 'color' },
+      backgroundColor: { control: 'color' }
     },
 } as Meta;
 
@@ -19,7 +20,5 @@ export const Default = Template.bind({});
 
 export const WithIconProps = Template.bind({});
 WithIconProps.args = {
-  iconProps: {
-      color: "blue"
-  },
+
 };

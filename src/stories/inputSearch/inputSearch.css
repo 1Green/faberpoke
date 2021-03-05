@@ -1,0 +1,32 @@
+.input-search-wrapper {
+  display: inline-block;
+  border-radius: 30px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+.input-search-wrapper--simple {
+  background: none;
+}
+
+.input-search-wrapper--rounded {
+  border-radius: 50px;
+}
+
+.input-search {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--black);
+  padding: 0px 10px;
+  background: none;
+}
+
+.input-search-close-button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0px;
+}

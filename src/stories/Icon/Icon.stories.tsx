@@ -9,7 +9,8 @@ export default {
     component: Icon,
     argTypes: {
       color: { control: 'color' },
-      style: { control: 'object' }
+      style: { control: 'object' },
+      name: { control: 'select' }
     },
 } as Meta;
 
