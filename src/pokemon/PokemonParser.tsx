@@ -14,9 +14,10 @@ export function PokemonParser({ jsonFromApi }: PokemonParserProps) {
     const height: number = jsonFromApi.height;
     const types: TypeSlot[] = jsonFromApi.types;
     const sprites: Sprites = jsonFromApi.sprites;
-    const ablitities: AbilitySlot[] = jsonFromApi.abilities
+    const ablitities: AbilitySlot[] = jsonFromApi.abilities;
+    const stats: Stat[] = jsonFromApi.stats;
     return (
-        <Pokemon name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={ablitities} />
+        <Pokemon name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={ablitities} stats={stats} />
     )
 }
 

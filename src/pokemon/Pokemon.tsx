@@ -3,8 +3,9 @@ import { PokemonAbility } from './ability/PokemonAbility';
 import './pokemon.css'
 import { PokemonType } from './type/PokemonType';
 import { ButtonImg } from './buttonImg/ButtonImg';
-import { AbilitySlot, Sprites, SpritesImages, TypeSlot } from './PokemonParser';
+import { AbilitySlot, Sprites, SpritesImages, Stat, TypeSlot } from './PokemonParser';
 import { getSpritesKey, capitalizeFirstLetter } from './functions';
+import { PokemonStat } from './statistic/PokemonStat';
 
 export type PokemonProps = {
     name: string;
@@ -14,13 +15,13 @@ export type PokemonProps = {
     types: TypeSlot[];
     abilities: AbilitySlot[];
     sprites: Sprites;
-    // stats: string[];
+    stats: Stat[];
 }
 
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
 
-export function Pokemon({ name, order, weight, height, types, sprites, abilities }: PokemonProps) {
+export function Pokemon({ name, order, weight, height, types, sprites, abilities, stats }: PokemonProps) {
     const [shiny, setShiny] = React.useState(false);
     const [orientation, setOrientation] = React.useState<Orientation>('front');
     const [gender, setGender] = React.useState<Gender>('default');
@@ -55,6 +56,14 @@ export function Pokemon({ name, order, weight, height, types, sprites, abilities
                         // TODO get text from the url : abilitySlot.url
                         const name: string = capitalizeFirstLetter(abilitySlot.ability.name);
                         return < PokemonAbility key={abilitySlot.ability.name} name={name.replace('-', ' ')} abilityText="Lorem ipsum, dolor sit amet consectetur adipisicing elit." />
+                    })
+                }
+            </div >
+            <div className="pokemon-stat-container">
+                {
+                    stats.map(statElement => {
+                        const name: string = capitalizeFirstLetter(statElement.stat.name);
+                        return < PokemonStat key={statElement.stat.name} name={name.replace('-', ' ')} value={statElement.base_stat} />
                     })
                 }
             </div >

@@ -17,7 +17,8 @@ const Template: Story<PokemonTypeProps> = (args) => <PokemonType {...args} />;
 export const Card = Template.bind({});
 Card.args = {
     type: {
-        "name": "fire",
-        "url": "https://pokeapi.co/api/v2/type/10/"
-    }
+        "name": "electric",
+        "url": "https://pokeapi.co/api/v2/type/13/"
+    },
+    img: "./img/electric.png"
 };
