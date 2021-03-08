@@ -1,0 +1,48 @@
+.searchWrapper {
+  position: relative;
+  width: 70%;
+  background-color: var(--gray5);
+  height: 70vh;
+  overflow: hidden;
+  padding: 20px 0px 40px 0px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.listWrapper {
+  overflow: scroll;
+  height: 100%;
+}
+
+.headerWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px 20px 20px;
+}
+
+.pokedexDotsWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.pokedexDot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin: 0px 5px;
+  background-color: var(--red);
+}
+
+.pokedexDotRed {
+  background-color: var(--red);
+}
+
+.pokedexDotYellow {
+  background-color: var(--yellow);
+}
+
+.pokedexDotGreen {
+  background-color: var(--green);
+}

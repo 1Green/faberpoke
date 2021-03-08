@@ -1,0 +1,36 @@
+.pokemonListWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.pokemonListItem {
+  height: 100px;
+  width: 100px;
+  padding: 30px;
+  display: flex;
+  border-radius: 30px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemonListItem:hover {
+  background-color: var(--gray4);
+}
+
+.pokemonListItem:focus {
+  background-color: var(--gray4);
+}
+
+.pokemonListItem:active {
+  background-color: var(--gray3);
+}
+
+.pokemonImg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

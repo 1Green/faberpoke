@@ -1,11 +1,15 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
-import Input from '../../stories/Input/Input';
+import cx from 'classnames';
+import Input from '../../stories/Input/Input'
+import styles from './search.module.css';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import SearchInput from '../../stories/SearchInput/SearchInput';
-import { ReactComponent as SearchIcon } from '../../icons/search-icon.svg';
+import SearchInput from '../../stories/SearchInput/SearchInput'
+import { throttle } from 'lodash'
+import { ReactComponent as SearchIcon } from '../../icons/search-icon.svg'
+import PokemonList from 'stories/pokemonList/PokemonList'
 
-interface Pokemon {
+export interface Pokemon {
     name: string;
     url: string;
 }
@@ -19,52 +23,70 @@ const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res =
 
 const Search: FunctionComponent = () => {
     const getAllPokemonUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000'
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { data } = useSWR<FetchAllPokemonResponse, Error>(getAllPokemonUrl, fetcher);
-    const [pokemonsFiltered, setPokemonsFiltered] = useState<Pokemon[] | undefined>();
+    const [pokemons, setPokemons] = useState<Pokemon[] | undefined>();
+    const [pokemonsCurrent, setPokemonsCurrent] = useState<Pokemon[] | undefined>();
     const [searchInput, setSearchInput] = useState<string>("");
 
     const searchPokemonByName = useCallback((name: string, pokemonList: Pokemon[] | undefined): Pokemon[] | undefined => {
         if (pokemonList === undefined) return undefined;
         return pokemonList.filter((element) => element.name.startsWith(name))
     }, [])
- 
+
     useEffect(() => {
-        // if (searchInput.length === 0) {
-        //     setPokemonsFiltered(undefined);
-        //     return;
-        // }
+        setPokemons(data?.results);
+    }, [data?.results])
+
+    const fetchPokemonBySearch = throttle((searchInput: string) => {
         const filteredData = searchPokemonByName(searchInput, data?.results);
         console.log("filtered data: ", filteredData);
         if (filteredData !== undefined)
-            setPokemonsFiltered(filteredData);
+            setPokemons(filteredData);
         else
-            setPokemonsFiltered(data?.results);
-    }, [searchInput, data, searchPokemonByName]);
+            setPokemons(data?.results);
+    }, 100)
 
-    const getPokemonImageURL = (url: string): string => {
-        const regex = new RegExp(/\d+(?=\/$)/);
-        const regexArr = regex.exec(url);
-        if (regexArr === null || regexArr.length === 0) return "";
+    const throttleSearchInput = (input: string) => {
+        setSearchInput(input);
+        fetchPokemonBySearch(input);
+    };
 
-        const pokemonId = regexArr[0];
-        if (pokemonId === undefined) return "";
-        // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
-    }
+    const isListLoading: boolean = pokemons === undefined && searchInput === '';
+
+    useEffect(() => {
+        const paginationOptions = {
+            currentPage: 1,
+            totalPages: 10,
+            pageLimit: 15
+        }
+
+        const { currentPage, pageLimit } = paginationOptions
+        const offset = (currentPage - 1) * pageLimit;
+        const currentPokemons = pokemons?.slice(offset, offset + pageLimit);
+        setPokemonsCurrent(currentPokemons);
+    }, [pokemons])
 
     return (
-        <div style={{ backgroundColor: "lightgrey", height: "70vh", overflow: "scroll" }}>
-            <div style={{ width: "60px", height: "10px", backgroundColor: "black", borderRadius: "80%"}} />
-            <SearchIcon style={{ height: '20px', width: '20px' }} />
-            <Input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: "wrap" }}>
-                {pokemonsFiltered !== undefined && pokemonsFiltered.map((pokemon, index) => {
-                    return (
-                        <div key={index} style={{ flex: '0 0 20%' }}>
-                            <img alt='' src={getPokemonImageURL(pokemon.url)} style={{ height: '80px', width: '80px' }} />
-                        </div>
-                    )
-                })}
+        <div className={styles.searchWrapper}>
+            <div className={styles.headerWrapper}>
+                <div style={{
+                    zIndex: 1
+                }}>
+                    <SearchIcon style={{ height: '20px', width: '20px' }} />
+                    <Input value={searchInput} onChange={(e) => throttleSearchInput(e.target.value)} />
+                </div>
+                <div className={styles.pokedexDotsWrapper}>
+                    <div className={cx(styles.pokedexDot, styles.pokedexDotRed)}/>
+                    <div className={cx(styles.pokedexDot, styles.pokedexDotYellow)}/>
+                    <div className={cx(styles.pokedexDot, styles.pokedexDotGreen)}/>
+                </div>
+            </div>
+            <div className={styles.listWrapper}>
+                <PokemonList
+                    isLoading={isListLoading}
+                    pokemons={pokemonsCurrent}
+                />
             </div>
         </div>
     )
