@@ -6,11 +6,11 @@ function App() {
   return (
     <div className="App">
       <Navigation>
-        <div key='coucou'>
-          <p>COUCOU</p>
+        <div key='pokedex' style={{ backgroundColor: "red", padding: "20px", height: '100%', width: '100%'}}>
+          <p>POKEDEX</p>
         </div>
-        <div key='salut'>
-          <p>SALUT</p>
+        <div key='roaster' style={{ backgroundColor: "green", padding: "20px", height: '100%', width: '100%'}}>
+          <p>ROASTER</p>
         </div>
       </Navigation>
     </div>
