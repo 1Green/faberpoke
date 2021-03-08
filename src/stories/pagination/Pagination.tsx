@@ -109,7 +109,7 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
             totalRecords
         }
         onPageChanged !== undefined && onPageChanged(paginationData);
-    }, [currentPage]);
+    }, [currentPage, onPageChanged, pageLimit, totalPages, totalRecords]);
 
     const pages = getPageNumbers();
     return (
@@ -127,7 +127,7 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
                 )
 
                 const pageLinkClasses = cx('page-link-wrapper', {
-                    ['page-link-wrapper--active']: currentPage === page
+                    'page-link-wrapper--active': currentPage === page
                 })
                 return (
                     <li key={index} className={pageLinkClasses} onClick={handleClick(page)}>
