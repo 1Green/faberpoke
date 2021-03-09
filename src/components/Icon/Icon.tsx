@@ -4,7 +4,7 @@ import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
 import { ReactComponent as CloseIcon } from './iconSvgs/close.svg';
 import './icon.css';
 
-type IconKeys = "search" | "close";
+type IconKeys = 'search' | 'close';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
 const icons: Icons = {
     'search': SearchIcon,

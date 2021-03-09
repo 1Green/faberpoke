@@ -1,6 +1,6 @@
 import React, { FunctionComponent, InputHTMLAttributes } from 'react'
 import cx from 'classnames';
-import Icon from "../Icon/Icon";
+import Icon from '../Icon/Icon';
 import styles from './inputSearch.module.css';
 
 export type InputSearchProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
