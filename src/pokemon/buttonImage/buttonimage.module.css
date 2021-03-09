@@ -1,4 +1,5 @@
 .buttonImage {
+  cursor: pointer;
   background: transparent;
   border: none;
   padding-left: 1px;
@@ -8,7 +9,6 @@ button:focus {
   outline: none;
 }
 
-.imageInside {
-  height: 32px;
-  width: 32px;
+.buttonDisabled {
+  cursor: default;
 }

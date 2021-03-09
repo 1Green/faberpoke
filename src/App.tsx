@@ -1,10 +1,10 @@
 import React from 'react';
-import { PokemonParser } from './pokemon/PokemonParser';
+import { Pokemon } from './pokemon/Pokemon';
 import rawJson from './json/pikachu.json';
 
 function App() {
   return (
-    <PokemonParser jsonFromApi={rawJson} />
+    <Pokemon key={rawJson.id} {...rawJson} />
   );
 }
 

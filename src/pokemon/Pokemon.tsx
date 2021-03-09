@@ -2,35 +2,26 @@ import * as React from 'react';
 import styles from './pokemon.module.css'
 import { PokemonType } from './type/PokemonType';
 import { ButtonImage } from './buttonImage/ButtonImage';
-import { ReactComponent as PokeballCardIcon } from './svg/pokeballcard.svg';
-import { AbilitySlot, Sprites, SpritesImages, Statistics, TypeSlot } from './PokemonParser';
+import { OrientationShinyGender, PokeApiResponse } from './PokemonParser';
 import { getSpritesKey, capitalizeFirstLetter } from './functions';
-
-export type PokemonProps = {
-    name: string;
-    order: number;
-    weight: number;
-    height: number,
-    types: TypeSlot[];
-    abilities?: AbilitySlot[];
-    sprites: Sprites;
-    statistics?: Statistics[];
-}
+import Icon from '../Icon/Icon';
 
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
 
-export function Pokemon({ name, order, weight, height, types, sprites }: PokemonProps) {
+export function Pokemon({ name, order, weight, height, types, sprites }: PokeApiResponse) {
     const [shiny, setShiny] = React.useState(false);
     const [orientation, setOrientation] = React.useState<Orientation>('front');
     const [gender, setGender] = React.useState<Gender>('default');
 
+    // Sprite logic
+    const spriteKey: keyof OrientationShinyGender = getSpritesKey(orientation, shiny, gender)
+    const spriteUrl = sprites[spriteKey] ?? "./img/no_sprite.png" //should never render no_sprite img
+
+    // Button logic
     const onClick = () => setGender(() => gender === 'default' ? 'female' : 'default')
     //conditional rendering of gender button
-    const hasFemale: boolean = sprites[getSpritesKey('front', false, 'female')] !== null
-
-    const spriteKey: keyof SpritesImages = getSpritesKey(orientation, shiny, gender)
-    const spriteUrl = sprites[spriteKey] ?? "./img/no_sprite.png" //should never render no_sprite img
+    const hasFemale = sprites[getSpritesKey('front', false, 'female')] !== null
 
     return (
         <div className={styles.pokemonCardContainer}>
@@ -39,13 +30,13 @@ export function Pokemon({ name, order, weight, height, types, sprites }: Pokemon
                 <div className={styles.pokemonName}>{capitalizeFirstLetter(name).replace('-', ' ')}</div>
                 <div className={styles.pokemonTypeContainer}>
                     {
-                        types.map(typeSlot => {
-                            let typeImage;
-                            if (typeSlot.type.name !== 'unknown' && typeSlot.type.name !== 'shadow') {
-                                typeImage = `./img/${typeSlot.type.name}.png`
-                            }
-                            return <PokemonType key={typeSlot.type.name} type={typeSlot.type} imageUrl={typeImage} />
-                        })
+                        types
+                            .filter((typeSlot) =>
+                                typeSlot.type.name !== 'unknown' &&
+                                typeSlot.type.name !== 'shadow')
+                            .map(typeSlot => {
+                                return <PokemonType key={typeSlot.type.name} type={typeSlot.type} imageUrl={`./img/${typeSlot.type.name}.png`} />
+                            })
                     }
                 </div>
             </div>
@@ -58,14 +49,14 @@ export function Pokemon({ name, order, weight, height, types, sprites }: Pokemon
                         {
                             hasFemale ?
                                 <div className={styles.genderButtonImages}>
-                                    <ButtonImage name='default' gender={gender} onClick={onClick} />
-                                    <ButtonImage name='female' gender={gender} onClick={onClick} />
+                                    <ButtonImage name='default' size='button' color={gender === 'default' ? 'black' : '#CACACA'} onClick={onClick} disabled={gender === 'default'} />
+                                    <ButtonImage name='female' size='button' color={gender === 'female' ? 'black' : '#CACACA'} onClick={onClick} disabled={gender === 'female'} />
                                 </div>
                                 : null
                         }
                         <div className={styles.shinyOrientationContainer}>
-                            <ButtonImage name='shiny' shiny={shiny} onClick={() => setShiny(!shiny)} />
-                            <ButtonImage name='orientation' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
+                            <ButtonImage name='shiny' size='button' color={shiny ? 'black' : '#CACACA'} onClick={() => setShiny(!shiny)} />
+                            <ButtonImage name='orientation' size='button' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
                         </div>
                     </div>
                 </div>
@@ -75,7 +66,9 @@ export function Pokemon({ name, order, weight, height, types, sprites }: Pokemon
 
                 <div className={styles.pokemonWeightHeight}>Height <div className={styles.pokemonHeightValue}>{height} dm</div></div>
             </div>
-            <div className={styles.iconContainer}><PokeballCardIcon fill={'#bdbdbd'} className={styles.pokeballIcon} /></div>
+            <div className={styles.iconContainer}>
+                <Icon name='pokeball' size='pokeball' color={'#bdbdbd'} className={styles.pokeballIcon} />
+            </div>
         </div>
     )
 }

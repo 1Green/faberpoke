@@ -3,11 +3,11 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import pikachuJson from '../json/pikachu.json';
 import charizardJson from '../json/charizard.json';
-import { PokemonParser, PokemonParserProps } from './PokemonParser';
+import { Pokemon, PokemonProps } from './Pokemon';
 
 export default {
   title: 'Pokemon Card',
-  component: PokemonParser,
+  component: Pokemon,
   argTypes: {
     name: { control: 'text' },
     types: {
@@ -21,13 +21,9 @@ export default {
   },
 } as Meta;
 
-const Template: Story<PokemonParserProps> = (args) => <PokemonParser {...args} />;
+const Template: Story<PokemonProps> = (args) => <Pokemon {...args} />;
 
 export const Pikachu = Template.bind({});
-Pikachu.args = {
-  jsonFromApi: pikachuJson
-};
+Pikachu.args = { ...pikachuJson };
 export const Charizard = Template.bind({});
-Charizard.args = {
-  jsonFromApi: charizardJson
-};
+Charizard.args = { ...charizardJson };

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Type } from '../PokemonParser';
+import { Resource } from '../PokemonParser';
 import styles from './pokemontype.module.css'
 export type PokemonTypeProps = {
-    type: Type;
+    type: Resource;
     imageUrl: string | undefined;
 }
 

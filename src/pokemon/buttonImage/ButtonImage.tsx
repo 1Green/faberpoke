@@ -1,47 +1,26 @@
-import React, { FC, SVGProps } from 'react';
+import React from 'react';
+import cx from 'classnames';
 import styles from './buttonimage.module.css'
-import { ReactComponent as MaleIcon } from '../svg/male.svg';
-import { ReactComponent as FemaleIcon } from '../svg/female.svg';
-import { ReactComponent as ShinyIcon } from '../svg/shiny.svg';
-import { ReactComponent as OrientationIcon } from '../svg/return.svg';
-import { Gender } from '../Pokemon';
-
-type IconKeys = 'default' | 'female' | 'shiny' | `orientation`;
-type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> }
-const icons: Icons = {
-  'default': MaleIcon, 'female': FemaleIcon, 'shiny': ShinyIcon, 'orientation': OrientationIcon,
-}
-
-export type ButtonColors = '#CACACA' | 'black';
-export interface ButtonImageProps {
-  name: IconKeys;
-  gender?: Gender;
-  shiny?: boolean;
+import Icon, { IconProps } from '../../Icon/Icon';
+export interface ButtonImageProps extends IconProps {
   onClick: () => void;
+  disabled?: boolean;
 }
 
-export function ButtonImage({ name, gender, shiny, onClick }: ButtonImageProps) {
-  const CustomIcon = icons[name];
+export function ButtonImage({ onClick, disabled, ...iconProps }: ButtonImageProps) {
 
-  let color: ButtonColors = 'black';
-  let disabled = false;
-  if (gender !== undefined) {
-    color = gender === name ? 'black' : '#CACACA'
-    disabled = color === 'black' ? true : false
-  }
-
-  if (shiny !== undefined) {
-    color = shiny ? 'black' : '#CACACA'
-  }
-
+  const buttonClasses = cx({
+    [styles.buttonImage as string]: true,
+    [styles.buttonDisabled as string]: disabled
+  });
   return (
     <button
-      className={styles.buttonImage}
+      className={buttonClasses}
       type="button"
       onClick={onClick}
       disabled={disabled}
     >
-      <CustomIcon fill={color} className={styles.imageInside} />
+      <Icon {...iconProps} />
 
     </button>
   )
