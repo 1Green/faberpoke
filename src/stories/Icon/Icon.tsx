@@ -1,12 +1,20 @@
 import React, { FunctionComponent, FC, SVGProps } from 'react'
 import cx from 'classnames';
 import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
+import { ReactComponent as PokeBallIcon } from './iconSvgs/poke-ball.svg';
+import { ReactComponent as SuperBallIcon } from './iconSvgs/super-ball.svg';
+import { ReactComponent as MegaBallIcon } from './iconSvgs/mega-ball.svg';
+import { ReactComponent as UltraBallIcon } from './iconSvgs/ultra-ball.svg';
 import './icon.css';
 
-type IconKeys = 'search';
+type IconKeys = 'search' | 'pokeball' | 'superball' | 'megaball' | 'ultraball';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
 const icons: Icons = {
-    "search": SearchIcon
+    'search': SearchIcon,
+    'pokeball': PokeBallIcon,
+    'superball': SuperBallIcon,
+    'megaball': MegaBallIcon,
+    'ultraball': UltraBallIcon
 }
 
 export interface IconProps {
