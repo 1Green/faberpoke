@@ -1,10 +1,10 @@
-import React, { FunctionComponent, InputHTMLAttributes, useState } from 'react'
+import React, { FunctionComponent, InputHTMLAttributes } from 'react'
 import cx from 'classnames';
 import Icon from "../Icon/Icon";
-import './inputSearch.css';
+import styles from './inputSearch.module.css';
 
 export type InputSearchProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
-    onChange?: (text: string) => void;
+    onChange: (text: string) => void;
     simple?: boolean;
     rounded?: boolean;
     color?: string;
@@ -20,22 +20,22 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
     color,
     backgroundColor,
 }) => {
-    const [clearButtonEnable, setClearButtonEnable] = useState<boolean>(false);
+    // const [clearButtonEnable, setClearButtonEnable] = useState<boolean>(false);
     const clearHandler = (): void => {
-        onChange !== undefined && onChange('');
+        onChange('');
     }
 
     const changeHandler = (evt: React.ChangeEvent<HTMLInputElement>): void => {
         evt.preventDefault();
-        onChange !== undefined && onChange(evt.target.value);
+        onChange(evt.target.value);
     }
 
-    const wrapperClasses = cx('input-search-wrapper', {
-        'input-search-wrapper--simple': simple,
-        'input-search-wrapper--rounded': rounded
+    const wrapperClasses = cx(styles.wrapper, {
+        [styles.wrapperSimple as string]: simple,
+        [styles.wrapperRounded as string]: rounded
     })
 
-    const inputClasses = cx('input-search', className);
+    const inputClasses = cx(styles.inputSearch, className);
 
     return (
         <div style={{ backgroundColor: simple ? '' : backgroundColor }} className={wrapperClasses}>
@@ -47,15 +47,16 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
                 className={inputClasses}
             />
             <button
-                onMouseEnter={() => setClearButtonEnable(true)}
-                onMouseLeave={() => setClearButtonEnable(false)}
+                // onMouseEnter={() => setClearButtonEnable(true)}
+                // onMouseLeave={() => setClearButtonEnable(false)}
                 onClick={clearHandler}
-                className='input-search-close-button'
+                className={styles.closeButton}
             >
                 <Icon
                     name='close'
                     size='small'
-                    color={clearButtonEnable ? 'red' : color}
+                    className={styles.closeIcon}
+                    // color={clearButtonEnable ? 'red' : color}
                 />
             </button>
         </div>

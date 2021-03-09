@@ -1,4 +1,4 @@
-.input-search-wrapper {
+.wrapper {
   display: inline-block;
   border-radius: 30px;
   padding: 10px 15px;
@@ -6,15 +6,15 @@
   background-color: lightgray;
 }
 
-.input-search-wrapper--simple {
+.wrapperSimple {
   background: none;
 }
 
-.input-search-wrapper--rounded {
+.wrapperRounded {
   border-radius: 50px;
 }
 
-.input-search {
+.inputSearch {
   border: none;
   outline: none;
   font-size: 14px;
@@ -24,10 +24,16 @@
   background: none;
 }
 
-.input-search-close-button {
+.closeButton {
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 0px;
+}
+
+.closeIcon:hover {
+  height: 30px;
+  width: 30px;
+  fill: var(--red);
 }
