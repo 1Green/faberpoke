@@ -5,8 +5,7 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 import NavigationBar from './bar/Bar';
-// import fadeTransition from './fade.module.css';
-import slideTransition from './slide.module.css';  
+import { slideTransition } from './transitions';
 import styles from './navigation.module.css';
 
 export type NavigationProps = {
@@ -24,15 +23,14 @@ const Navigation: FunctionComponent<NavigationProps> = ({
 
     useEffect(() => {
         const newCurrentView = sectionArray.filter(elem => elem.key === currentKey);
-        console.log("new current section : ", newCurrentView);
         setCurrentView(newCurrentView);
     }, [currentKey, sectionArray])
 
     return (
-        <div style={{ height: '100vh', overflow: 'hidden' }}>
-            <NavigationBar setCurrentView={setCurrentKey} />
+        <div className={styles.navigationWrapper}>
+            <NavigationBar currentView={currentKey} setViewName={setCurrentKey} />
             <TransitionGroup
-                className={styles.navigationWrapper}
+                className={styles.viewWrapper}
                 timeout={duration}
             >
                 {currentView?.map((child: React.ReactChild) => (
