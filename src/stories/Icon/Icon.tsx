@@ -1,12 +1,14 @@
 import React, { FunctionComponent, FC, SVGProps } from 'react'
 import cx from 'classnames';
 import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
+import { ReactComponent as PokeballOutlineIcon } from './iconSvgs/pokeball-outline.svg';
 import './icon.css';
 
-type IconKeys = 'search';
+type IconKeys = 'search' | 'pokeball-outline';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
 const icons: Icons = {
-    "search": SearchIcon
+    "search": SearchIcon,
+    "pokeball-outline": PokeballOutlineIcon,
 }
 
 export interface IconProps {

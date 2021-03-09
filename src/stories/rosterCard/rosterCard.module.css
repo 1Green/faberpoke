@@ -1,0 +1,89 @@
+.wrapper {
+  position: relative;
+  height: 242px;
+  width: 128px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+}
+
+.red {
+  background: rgb(255, 91, 90);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 91, 90, 1) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--red);
+}
+
+.blue {
+  background: rgb(88, 99, 235);
+  background: linear-gradient(
+    180deg,
+    rgba(88, 99, 235, 1) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--blue);
+}
+
+.green {
+  background: rgb(94, 225, 52);
+  background: linear-gradient(
+    180deg,
+    rgba(94, 225, 52, 1) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--green);
+}
+
+.yellow {
+  background: rgb(235, 204, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(235, 204, 0, 1) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--yellow2);
+}
+
+.orange {
+  background: rgb(255, 132, 19);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 132, 19, 1) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--red);
+}
+
+.bgIcon {
+  height: 148px;
+  width: 148px;
+  position: absolute;
+  top: -35px;
+  right: -35px;
+}
+
+.imageWrapper {
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.image {
+  height: 136px;
+  width: 136px;
+  object-fit: contain;
+}
+
+.title {
+  font-family: "Raleway";
+  font-weight: bold;
+  color: var(--black);
+  font-size: 18px;
+  text-align: center;
+}
