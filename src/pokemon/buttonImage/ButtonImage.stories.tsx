@@ -18,13 +18,17 @@ const Template: Story<ButtonImageProps> = (args) => <ButtonImage {...args} />;
 
 export const Shiny = Template.bind({});
 Shiny.args = {
-  image: 'shiny',
+  name: 'shiny',
 };
-export const Gender = Template.bind({});
-Gender.args = {
-  image: 'gender',
+export const Male = Template.bind({});
+Male.args = {
+  name: 'default',
+};
+export const Female = Template.bind({});
+Female.args = {
+  name: 'female',
 };
 export const Orientation = Template.bind({});
 Orientation.args = {
-  image: 'orientation',
+  name: 'orientation',
 };

@@ -7,5 +7,5 @@ export type PokemonTypeProps = {
 }
 
 export function PokemonType({ type, imageUrl }: PokemonTypeProps) {
-    return imageUrl !== undefined ? <div className={styles.container}><img className={styles.imageType} src={imageUrl} alt={type.name} /></div> : null;
+    return imageUrl !== undefined ? <img className={styles.imageType} src={imageUrl} alt={type.name} /> : null;
 }

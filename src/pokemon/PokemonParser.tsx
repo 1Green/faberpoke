@@ -6,10 +6,9 @@ export type PokemonParserProps = {
 }
 
 export function PokemonParser({ jsonFromApi }: PokemonParserProps) {
-    console.log(jsonFromApi);
-    const { name, order, weight, height, types, sprites, abilities, stats } = jsonFromApi;
+    const { id, name, order, weight, height, types, sprites, abilities, stats } = jsonFromApi;
     return (
-        <Pokemon name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={abilities} statistics={stats} />
+        <Pokemon key={id} name={name} order={order} weight={weight} height={height} types={types} sprites={sprites} abilities={abilities} statistics={stats} />
     )
 }
 
