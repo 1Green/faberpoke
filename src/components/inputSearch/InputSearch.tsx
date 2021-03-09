@@ -20,7 +20,6 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
     color,
     backgroundColor,
 }) => {
-    // const [clearButtonEnable, setClearButtonEnable] = useState<boolean>(false);
     const clearHandler = (): void => {
         onChange('');
     }
@@ -47,8 +46,6 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
                 className={inputClasses}
             />
             <button
-                // onMouseEnter={() => setClearButtonEnable(true)}
-                // onMouseLeave={() => setClearButtonEnable(false)}
                 onClick={clearHandler}
                 className={styles.closeButton}
             >
@@ -56,7 +53,6 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
                     name='close'
                     size='small'
                     className={styles.closeIcon}
-                    // color={clearButtonEnable ? 'red' : color}
                 />
             </button>
         </div>

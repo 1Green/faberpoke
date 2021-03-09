@@ -20,5 +20,4 @@ export const Default = Template.bind({});
 
 export const WithIconProps = Template.bind({});
 WithIconProps.args = {
-
 };

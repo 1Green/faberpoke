@@ -32,8 +32,10 @@
   padding: 0px;
 }
 
+.closeIcon {
+  fill: black;
+}
+
 .closeIcon:hover {
-  height: 30px;
-  width: 30px;
-  fill: var(--red);
+  fill: red;
 }
