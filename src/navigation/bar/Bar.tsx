@@ -1,22 +1,62 @@
 import React, { FunctionComponent } from 'react'
-import Icon from 'stories/Icon/Icon';
+import cx from 'classnames';
+import Icon, { IconKeys } from 'stories/Icon/Icon';
 import styles from './bar.module.css';
 
 export type NavigationBarProps = {
-    setCurrentView: (newViewKey: string) => void;
+    currentView: string;
+    setViewName: (newViewKey: string) => void;
 }
 
+export type NavigationButtonArray = {
+    key: string;
+    title: string;
+    icon: IconKeys;
+}
+
+const buttons: NavigationButtonArray[] = [
+    {
+        key: 'pokedex',
+        title: 'Pokedex',
+        icon: 'pokeball'
+    },
+    {
+        key: 'roaster',
+        title: 'Roaster',
+        icon: 'superball'
+    },
+    {
+        key: 'fight',
+        title: 'Fight',
+        icon: 'megaball'
+    },
+    {
+        key: 'contact',
+        title: 'Contact',
+        icon: 'ultraball'
+    }
+]
+
 const NavigationBar: FunctionComponent<NavigationBarProps> = ({
-    setCurrentView
+    currentView,
+    setViewName
 }) => {
     return (
         <div className={styles.wrapper}>
-            <div>
-                <button className={styles.button} onClick={() => setCurrentView('pokedex')}>
-                    <Icon name="pokeball" size='large' />
-                </button>
-                <p className={styles.title}>Pokedex</p>
-            </div>
+            { buttons.map((button, index) => {
+                const itemClasses = cx(
+                    styles.barItem,
+                    currentView !== button.key ? styles.inactive : undefined,
+                )
+                return (
+                    <div key={index} className={itemClasses}>
+                        <button className={styles.button} onClick={() => setViewName(button.key)}>
+                            <Icon name={button.icon} className={styles.icon} />
+                            <p className={styles.title}>{button.title}</p>
+                        </button>
+                    </div>
+                )
+            })}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 .enter {
   opacity: 0;
-  transform: translateY(-50%);
+  transform: translateY(-100%);
 }
 
 .enterActive {
@@ -16,6 +16,6 @@
 
 .exitActive {
   opacity: 0;
-  transform: translateY(-50%);
-  transition: opacity 400ms ease-in-out, transform 600ms ease-in-out;
+  transform: translateY(-100%);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }

@@ -1,5 +1,12 @@
 .navigationWrapper {
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row-reverse;
+  overflow: hidden;
+}
+
+.viewWrapper {
+  flex: 1;
   overflow: scroll;
 }
 

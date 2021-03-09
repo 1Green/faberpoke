@@ -7,7 +7,7 @@ import { ReactComponent as MegaBallIcon } from './iconSvgs/mega-ball.svg';
 import { ReactComponent as UltraBallIcon } from './iconSvgs/ultra-ball.svg';
 import './icon.css';
 
-type IconKeys = 'search' | 'pokeball' | 'superball' | 'megaball' | 'ultraball';
+export type IconKeys = 'search' | 'pokeball' | 'superball' | 'megaball' | 'ultraball';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
 const icons: Icons = {
     'search': SearchIcon,
