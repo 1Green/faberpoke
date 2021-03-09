@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import cx from 'classnames';
-import './pagination.css';
+import styles from './pagination.module.css';
 
 type PaginationDataType = {
     currentPage: number;
@@ -15,8 +15,10 @@ export type PaginationProps = {
     onPageChanged?: (data: PaginationDataType) => void;
 }
 
-const LEFT_PAGE = 'LEFT';
-const RIGHT_PAGE = 'RIGHT';
+export enum PaginationButton {
+    Prev = 'Prev',
+    Next = 'Next',
+}
 
 export const Pagination: FunctionComponent<PaginationProps> = ({
     totalRecords = 0,
@@ -58,21 +60,21 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
             // handle: (1) < {5 6} [7] {8 9} (10)
             case (hasLeftSpill && !hasRightSpill): {
               const extraPages = getPageRange(startPage - spillOffset, startPage - 1);
-              pages = [LEFT_PAGE, ...extraPages, ...pages];
+              pages = [PaginationButton.Prev, ...extraPages, ...pages];
               break;
             }
     
             // handle: (1) {2 3} [4] {5 6} > (10)
             case (!hasLeftSpill && hasRightSpill): {
               const extraPages = getPageRange(endPage + 1, endPage + spillOffset);
-              pages = [...pages, ...extraPages, RIGHT_PAGE];
+              pages = [...pages, ...extraPages, PaginationButton.Next];
               break;
             }
     
             // handle: (1) < {4 5} [6] {7 8} > (10)
             case (hasLeftSpill && hasRightSpill):
             default: {
-              pages = [LEFT_PAGE, ...pages, RIGHT_PAGE];
+              pages = [PaginationButton.Prev, ...pages, PaginationButton.Next];
               break;
             }
           }
@@ -113,21 +115,21 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
 
     const pages = getPageNumbers();
     return (
-        <ul className='pagination'>
+        <ul className={styles.pagination}>
             {pages.map((page, index) => {
-                if (page === LEFT_PAGE) return (
-                    <li key={index} className='page-link-wrapper' onClick={handleMoveLeft}>
+                if (page === PaginationButton.Prev) return (
+                    <li key={index} className={styles.link} onClick={handleMoveLeft}>
                         Prev
                     </li>
                 )
-                if (page === RIGHT_PAGE) return (
-                    <li key={index} className='page-link-wrapper' onClick={handleMoveRight}>
+                if (page === PaginationButton.Next) return (
+                    <li key={index} className={styles.link} onClick={handleMoveRight}>
                         Next
                     </li>
                 )
 
-                const pageLinkClasses = cx('page-link-wrapper', {
-                    'page-link-wrapper--active': currentPage === page
+                const pageLinkClasses = cx(styles.link, {
+                    [styles.linkActive as string]: currentPage === page
                 })
                 return (
                     <li key={index} className={pageLinkClasses} onClick={handleClick(page)}>
