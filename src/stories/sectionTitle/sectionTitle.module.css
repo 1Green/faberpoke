@@ -1,0 +1,17 @@
+.wrapper {
+  display: inline-block;
+}
+
+.title {
+  font-family: "Raleway";
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--black);
+  margin: 5px 0;
+}
+
+.line {
+  height: 2px;
+  width: 30%;
+  border-radius: 30px;
+}

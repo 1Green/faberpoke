@@ -1,0 +1,14 @@
+.buttonImage {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+button:focus {
+  outline: none;
+}
+
+.buttonDisabled {
+  cursor: default;
+}
