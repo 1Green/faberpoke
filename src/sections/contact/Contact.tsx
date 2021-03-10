@@ -3,9 +3,9 @@ import styles from './contact.module.css'
 import { PersonalInfo, PersonalInfoProps } from './PersonalInfo'
 
 export type ContactProps = {
-    contactArray: PersonalInfoProps[];
-    imageUrl: string;
-    alt: string;
+    contactArray?: PersonalInfoProps[];
+    imageUrl?: string;
+    alt?: string;
 }
 
 export const contactDetails: PersonalInfoProps[] =
@@ -37,9 +37,7 @@ export function Contact({ contactArray = contactDetails, imageUrl = squirtleImag
                     }))
                 }
             </div>
-            <div className={styles.imageContainer}>
-                <img className={styles.image} src={imageUrl} alt={alt} />
-            </div>
+            <img className={styles.image} src={imageUrl} alt={alt} />
         </div>
     )
 }
