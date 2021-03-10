@@ -1,10 +1,9 @@
 import React from 'react';
-import { Pokemon } from './pokemon/Pokemon';
-import rawJson from './json/pikachu.json';
+import SearchSection from 'sections/Search/Search';
 
 function App() {
   return (
-    <Pokemon key={rawJson.id} {...rawJson} />
+    <SearchSection />
   );
 }
 

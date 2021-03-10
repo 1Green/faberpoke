@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import cx from 'classnames';
 import styles from './pagination.module.css';
 
-type PaginationDataType = {
+export type PaginationDataType = {
     currentPage: number;
     totalPages: number;
     pageLimit: number;
@@ -11,7 +11,7 @@ type PaginationDataType = {
 
 export type PaginationProps = {
     totalRecords?: number;
-    pageLimit?: number;
+    pageLimit: number;
     onPageChanged?: (data: PaginationDataType) => void;
 }
 
@@ -111,7 +111,7 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
             totalRecords
         }
         onPageChanged !== undefined && onPageChanged(paginationData);
-    }, [currentPage, onPageChanged, pageLimit, totalPages, totalRecords]);
+    }, [currentPage, pageLimit, totalPages, totalRecords, onPageChanged]);
 
     const pages = getPageNumbers();
     return (
@@ -141,4 +141,4 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
     )
 }
 
-export default Pagination
+export default Pagination;

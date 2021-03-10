@@ -4,7 +4,7 @@ import { PokemonType } from './type/PokemonType';
 import { ButtonImage } from './buttonImage/ButtonImage';
 import { OrientationShinyGender, PokeApiResponse } from './PokemonParser';
 import { getSpritesKey, capitalizeFirstLetter } from './functions';
-import Icon from '../Icon/Icon';
+import Icon from '../../Icon/Icon';
 
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
@@ -26,7 +26,7 @@ export function Pokemon({ name, order, weight, height, types, sprites }: PokeApi
     return (
         <div className={styles.pokemonCardContainer}>
             <div className={styles.pokemonOrderNameType}>
-                <div className={styles.pokemonOrder}>{`#${order}`}</div>
+                <div className={styles.pokemonOrder}>{order}</div>
                 <div className={styles.pokemonName}>{capitalizeFirstLetter(name).replace('-', ' ')}</div>
                 <div className={styles.pokemonTypeContainer}>
                     {

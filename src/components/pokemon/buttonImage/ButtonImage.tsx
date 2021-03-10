@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from './buttonimage.module.css'
-import Icon, { IconProps } from '../../Icon/Icon';
+import Icon, { IconProps } from '../../../Icon/Icon';
 export interface ButtonImageProps extends IconProps {
   onClick: () => void;
   disabled?: boolean;
