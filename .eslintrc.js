@@ -65,6 +65,7 @@ module.exports = {
             ignoreMixedLogicalExpressions: false,
           },
         ],
+        "@typescript-eslint/no-unsafe-assignment": 0,
       },
     },
     {

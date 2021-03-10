@@ -1,0 +1,21 @@
+.icon--small {
+  height: 12px;
+}
+
+.icon--medium {
+  height: 16px;
+}
+
+.icon--large {
+  height: 20px;
+}
+
+.icon--button {
+  height: 32px;
+  width: 32px;
+}
+
+.icon--pokeball {
+  width: 48px;
+  height: 48px;
+}
