@@ -94,9 +94,11 @@
   flex-grow: 1;
   align-items: center;
   padding-top: 8px;
+  justify-content: space-between;
 }
 
-.genderButtonImages {
+.genderButtonImages,
+.emptyDiv {
   width: 68px;
 }
 
