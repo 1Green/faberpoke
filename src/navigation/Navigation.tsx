@@ -14,7 +14,7 @@ export type NavigationProps = {
 
 const duration = 300;
 
-const Navigation: FunctionComponent<NavigationProps> = ({
+export const Navigation: FunctionComponent<NavigationProps> = ({
     children
 }) => {
     const sectionArray = children;
