@@ -8,7 +8,7 @@ import Icon from '../Icon/Icon';
 
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
-export type Bookmark = 'bookmarkon' | 'bookmarkoff'
+export type Bookmark = 'bookmark-on' | 'bookmark-off'
 
 const colorButtonDisabled = '#CACACA'
 const colorButtonActive = 'black'
@@ -17,7 +17,7 @@ export function Pokemon({ name, order, weight, height, types, sprites }: PokeApi
     const [shiny, setShiny] = React.useState(false);
     const [orientation, setOrientation] = React.useState<Orientation>('front');
     const [gender, setGender] = React.useState<Gender>('default');
-    const [bookmark, setBookmark] = React.useState<Bookmark>('bookmarkoff');
+    const [bookmark, setBookmark] = React.useState<Bookmark>('bookmark-off');
 
     // Sprite logic
     const spriteKey: keyof OrientationShinyGender = getSpritesKey(orientation, shiny, gender)
@@ -57,9 +57,9 @@ export function Pokemon({ name, order, weight, height, types, sprites }: PokeApi
                                     <ButtonImage name='default' size='button' color={gender === 'default' ? colorButtonActive : colorButtonDisabled} onClick={onClick} disabled={gender === 'default'} />
                                     <ButtonImage name='female' size='button' color={gender === 'female' ? colorButtonActive : colorButtonDisabled} onClick={onClick} disabled={gender === 'female'} />
                                 </div>
-                                : <div className={styles.emptyDiv}>{''}</div>
+                                : <div className={styles.emptyDiv}></div>
                         }
-                        <ButtonImage name={bookmark} size='button' onClick={() => setBookmark(() => bookmark === 'bookmarkon' ? 'bookmarkoff' : 'bookmarkon')} />
+                        <ButtonImage name={bookmark} size='button' onClick={() => setBookmark(() => bookmark === 'bookmark-on' ? 'bookmark-off' : 'bookmark-on')} />
                         <div className={styles.shinyOrientationContainer}>
                             <ButtonImage name='shiny' size='button' color={shiny ? colorButtonActive : colorButtonDisabled} onClick={() => setShiny(!shiny)} />
                             <ButtonImage name='orientation' size='button' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
