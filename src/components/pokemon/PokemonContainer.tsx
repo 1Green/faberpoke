@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react'
+import styles from './pokemon.module.css';
 import { Pokemon } from './Pokemon'
 import { useHttp } from 'hooks';
 import { getPokemon } from 'api/pokemon'
@@ -12,7 +13,14 @@ const PokemonContainer: FunctionComponent<PokemonContainerProps> = ({
 }) => {
     const { data } = useHttp(pokemonUrl, getPokemon);
 
-    if (data === undefined) return null;
+    console.log("data: ", data);
+    if (data === undefined) {
+        return (
+            <div className={styles.pokemonLoaderContainer}>
+                <p>Loading..</p>
+            </div>
+        )
+    }
     return (
         <Pokemon {...data} />
     )

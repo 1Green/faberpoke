@@ -32,8 +32,10 @@ const Search: FunctionComponent = () => {
         const filteredData = searchPokemonByName(searchInput, data.results);
         if (filteredData.length !== 0)
             setPokemons(filteredData);
-        else {
+        else if (searchInput === '') {
             setPokemons(data.results);
+        } else {
+            setPokemons([]);
         }
     }, 100)
 
@@ -55,11 +57,12 @@ const Search: FunctionComponent = () => {
         <div className={styles.wrapper}>
             <div className={styles.searchWrapper}>
                 <div className={styles.headerWrapper}>
-                    <div style={{
-                        zIndex: 1
-                    }}>
-                        <InputSearch rounded backgroundColor='green' onChange={throttleSearchInput}/>
-                    </div>
+                    <InputSearch
+                        rounded
+                        value={searchInput}
+                        backgroundColor='#5ee134'
+                        onChange={throttleSearchInput}
+                    />
                     <div className={styles.pokedexDotsWrapper}>
                         <div className={cx(styles.pokedexDot, styles.pokedexDotRed)}/>
                         <div className={cx(styles.pokedexDot, styles.pokedexDotYellow)}/>

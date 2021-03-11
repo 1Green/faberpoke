@@ -1,5 +1,7 @@
 .wrapper {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border-radius: 30px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -20,11 +22,13 @@
   font-size: 14px;
   color: var(--black);
   padding: 0px 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
   background: none;
+  font-family: "Poppins";
 }
 
 .closeButton {
+  display: flex;
   background: none;
   border: none;
   outline: none;
@@ -33,9 +37,9 @@
 }
 
 .closeIcon {
-  fill: black;
+  fill: var(--black);
 }
 
 .closeIcon:hover {
-  fill: red;
+  fill: var(--red2);
 }
