@@ -21,7 +21,7 @@ body {
   --red2: #d6092d;
   --green: #5ee134;
   --blue: #5063eb;
-  --yellow: #ffde00;
+  --yellow: #1d1b12;
   --yellow2: #ebcc00;
   --orange: #ff8413;
 }
@@ -29,17 +29,17 @@ body {
 /******* FONTS *******/
 
 /* Pokemon */
-
+/* 
 @font-face {
   font-family: "Pokemon";
-  src: url(./fonts/Pokemon/Pokemon-Solid.ttf) format("truetype");
-}
+  src: url("/fonts/Pokemon/Pokemon-Solid.ttf") format("truetype");
+} */
 
 /* Raleway */
-
+/* 
 @font-face {
   font-family: "Raleway";
-  src: url(./fonts/Raleway/Raleway-Bold.ttf) format("truetype");
+  src: url(/fonts/Raleway/Raleway-Bold.ttf) format("truetype");
 
   font-weight: 700;
   font-style: normal;
@@ -47,7 +47,7 @@ body {
 
 @font-face {
   font-family: "Raleway";
-  src: url(./fonts/Raleway/Raleway-BoldItalic.ttf) format("truetype");
+  src: url(/fonts/Raleway/Raleway-BoldItalic.ttf) format("truetype");
 
   font-weight: 700;
   font-style: italic;
@@ -55,7 +55,7 @@ body {
 
 @font-face {
   font-family: "Raleway";
-  src: url(./fonts/Raleway/Raleway-Black.ttf) format("truetype");
+  src: url(/fonts/Raleway/Raleway-Black.ttf) format("truetype");
 
   font-weight: 900;
   font-style: normal;
@@ -63,17 +63,17 @@ body {
 
 @font-face {
   font-family: "Raleway";
-  src: url(./fonts/Raleway/Raleway-BlackItalic.ttf) format("truetype");
+  src: url(/fonts/Raleway/Raleway-BlackItalic.ttf) format("truetype");
 
   font-weight: 900;
   font-style: italic;
-}
+} */
 
 /* Poppins */
-
+/* 
 @font-face {
   font-family: "Poppins";
-  src: url(./fonts/Poppins/Poppins-ExtraLight.ttf) format("truetype");
+  src: url(/fonts/Poppins/Poppins-ExtraLight.ttf) format("truetype");
 
   font-weight: 200;
   font-style: normal;
@@ -81,7 +81,7 @@ body {
 
 @font-face {
   font-family: "Poppins";
-  src: url(./fonts/Poppins/Poppins-ExtraLightItalic.ttf) format("truetype");
+  src: url(/fonts/Poppins/Poppins-ExtraLightItalic.ttf) format("truetype");
 
   font-weight: 200;
   font-style: italic;
@@ -89,7 +89,7 @@ body {
 
 @font-face {
   font-family: "Poppins";
-  src: url(./fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+  src: url(/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
 
   font-weight: 400;
   font-style: normal;
@@ -97,7 +97,7 @@ body {
 
 @font-face {
   font-family: "Poppins";
-  src: url(./fonts/Poppins/Poppins-SemiBold.ttf) format("truetype");
+  src: url(/fonts/Poppins/Poppins-SemiBold.ttf) format("truetype");
 
   font-weight: 600;
   font-style: normal;
@@ -105,8 +105,8 @@ body {
 
 @font-face {
   font-family: "Poppins";
-  src: url(./fonts/Poppins/Poppins-SemiBoldItalic.ttf) format("truetype");
+  src: url(/fonts/Poppins/Poppins-SemiBoldItalic.ttf) format("truetype");
 
   font-weight: 600;
   font-style: italic;
-}
+} */
