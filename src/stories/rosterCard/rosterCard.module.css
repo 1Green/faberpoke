@@ -8,6 +8,18 @@
   /* overflow: hidden; */
 }
 
+.empty {
+  background-color: var(--gray5);
+  border: 1px solid var(--gray4);
+  align-items: center;
+  justify-content: center;
+}
+
+.empty:hover {
+  cursor: pointer;
+  background: var(--gray4);
+}
+
 .red {
   background: rgb(255, 91, 90);
   background: linear-gradient(
@@ -59,8 +71,8 @@
 }
 
 .bgIcon {
-  height: 148px;
-  width: 148px;
+  height: 148px !important;
+  width: 148px !important;
   position: absolute;
   top: -35px;
   right: -35px;
@@ -86,4 +98,20 @@
   color: var(--black);
   font-size: 18px;
   text-align: center;
+  margin: 10px 0;
+}
+
+.addIcon {
+  height: 48px !important;
+  width: 48px !important;
+  fill: var(--gray);
+}
+
+.addTitle {
+  text-align: center;
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 13px;
+  margin: 10px 0;
+  color: var(--gray);
 }
