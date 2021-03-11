@@ -1,5 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react'
-import useSWR from 'swr'
+import { useHttp } from 'hooks';
 import cx from 'classnames';
 import styles from './search.module.css';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,23 +15,33 @@ export interface Pokemon {
     name: string;
     url: string;
 }
-
-interface FetchAllPokemonResponse {
+interface AllPokemonResponse {
     count: number;
     results?: Pokemon[];
 }
 
-const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json());
+const getAllPokemonUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000'
+
+const getAllPokemon = (url: string) => {
+    const pokemonsFromStorage = localStorage.getItem('pokemons')
+    if (pokemonsFromStorage !== null) {
+        const pokemonsParsed = JSON.parse(pokemonsFromStorage) as AllPokemonResponse;
+        return pokemonsParsed;
+    }
+    return fetch(url).then(response  => {
+        return response.json().then((response: AllPokemonResponse): AllPokemonResponse => {
+            localStorage.setItem('pokemons', JSON.stringify(response));
+            return response;
+        }).catch((error) => console.log("json() error: ", error));
+    }).catch((error) => console.log("fetch() error: ", error));
+}
 
 const Search: FunctionComponent = () => {
-    const getAllPokemonUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000'
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { data } = useSWR<FetchAllPokemonResponse, Error>(getAllPokemonUrl, fetcher);
+    const { data } = useHttp(getAllPokemonUrl, getAllPokemon);
     const [pokemons, setPokemons] = useState<Pokemon[] | undefined>();
     const [pokemonsCurrent, setPokemonsCurrent] = useState<Pokemon[] | undefined>();
     const [searchInput, setSearchInput] = useState<string>("");
     const [pokemonUrl, setPokemonUrl] = useState<string>('');
-    
 
     const searchPokemonByName = useCallback((name: string, pokemonList: Pokemon[] | undefined): Pokemon[] | undefined => {
         if (pokemonList === undefined) return undefined;
@@ -38,16 +49,18 @@ const Search: FunctionComponent = () => {
     }, [])
 
     useEffect(() => {
-        setPokemons(data?.results);
-    }, [data?.results])
+        if (data === undefined) return;
+        setPokemons(data.results);
+    }, [data])
 
     const fetchPokemonBySearch = throttle((searchInput: string) => {
-        const filteredData = searchPokemonByName(searchInput, data?.results);
-        console.log("filtered data: ", filteredData);
+        if (data === undefined) return;
+        const filteredData = searchPokemonByName(searchInput, data.results);
         if (filteredData !== undefined)
             setPokemons(filteredData);
-        else
-            setPokemons(data?.results);
+        else {
+            setPokemons(data.results);
+        }
     }, 100)
 
     const throttleSearchInput = (input: string) => {
@@ -64,34 +77,36 @@ const Search: FunctionComponent = () => {
         setPokemonsCurrent(currentPokemons);
     }, [pokemons]);
 
-    console.log("pokemonUrl: ", pokemonUrl)
+    console.log("pokemons: ", pokemons)
     return (
-        <div className={styles.searchWrapper}>
-            <div className={styles.headerWrapper}>
-                <div style={{
-                    zIndex: 1
-                }}>
-                    <InputSearch rounded backgroundColor='green' onChange={throttleSearchInput}/>
+        <div>
+            <div className={styles.searchWrapper}>
+                <div className={styles.headerWrapper}>
+                    <div style={{
+                        zIndex: 1
+                    }}>
+                        <InputSearch rounded backgroundColor='green' onChange={throttleSearchInput}/>
+                    </div>
+                    <div className={styles.pokedexDotsWrapper}>
+                        <div className={cx(styles.pokedexDot, styles.pokedexDotRed)}/>
+                        <div className={cx(styles.pokedexDot, styles.pokedexDotYellow)}/>
+                        <div className={cx(styles.pokedexDot, styles.pokedexDotGreen)}/>
+                    </div>
                 </div>
-                <div className={styles.pokedexDotsWrapper}>
-                    <div className={cx(styles.pokedexDot, styles.pokedexDotRed)}/>
-                    <div className={cx(styles.pokedexDot, styles.pokedexDotYellow)}/>
-                    <div className={cx(styles.pokedexDot, styles.pokedexDotGreen)}/>
+                <div className={styles.listWrapper}>
+                    <PokemonList
+                        onShowPokemon={(url: string) => setPokemonUrl(url)}
+                        isLoading={isListLoading}
+                        pokemons={pokemonsCurrent}
+                    />
                 </div>
-            </div>
-            <div className={styles.listWrapper}>
-                <PokemonList
-                    onShowPokemon={(url: string) => setPokemonUrl(url)}
-                    isLoading={isListLoading}
-                    pokemons={pokemonsCurrent}
-                />
-            </div>
-            <div style={{ height: '100px', width: '100%'}}>
-                <Pagination
-                    totalRecords={pokemons?.length}
-                    pageLimit={15}
-                    onPageChanged={pageChangeHandler}
-                />
+                <div style={{ height: '100px', width: '100%'}}>
+                    <Pagination
+                        totalRecords={pokemons?.length}
+                        pageLimit={15}
+                        onPageChanged={pageChangeHandler}
+                    />
+                </div>
             </div>
             { pokemonUrl !== '' && (
                 <PokemonContainer  pokemonUrl={pokemonUrl} /> 

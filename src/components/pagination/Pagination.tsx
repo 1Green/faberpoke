@@ -28,6 +28,10 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
     const totalPages: number = Math.ceil(totalRecords / pageLimit);
     const [currentPage, setCurrentPage] = useState<number>(1);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [totalRecords])
+
     const getPageRange = (from: number, to: number, step = 1): number[] => {
         const range = [];
         for (let i = from; i <= to; i += step) { range.push(i) }
