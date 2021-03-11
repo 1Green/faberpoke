@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
-import { Pokemon } from 'sections/Search/Search';
+import { PokemonArray } from 'api/pokemon';
 import styles from './pokemonList.module.css';
 
 export type PokemonListProps = {
     isLoading?: boolean;
     onShowPokemon: (url: string) => void;
-    pokemons?: Pokemon[];
+    pokemons?: PokemonArray;
 }
 
 export const PokemonList: FunctionComponent<PokemonListProps> = ({

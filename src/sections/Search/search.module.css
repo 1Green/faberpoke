@@ -1,17 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
 .searchWrapper {
   position: relative;
-  width: 70%;
+  width: 60%;
   background-color: var(--gray5);
-  height: 70vh;
+  height: 446px;
   overflow: hidden;
-  padding: 20px 0px 40px 0px;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  margin-right: 20px;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .listWrapper {
+  flex: 1;
   overflow: scroll;
-  height: 80%;
 }
 
 .headerWrapper {
@@ -19,7 +29,17 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
+}
+
+.paginationWrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: var(--gray5);
 }
 
 .pokedexDotsWrapper {

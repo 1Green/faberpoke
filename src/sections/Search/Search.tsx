@@ -8,43 +8,17 @@ import InputSearch from 'components/inputSearch/InputSearch'
 import { throttle } from 'lodash'
 import PokemonList from 'components/pokemonList/PokemonList';
 import Pagination, { PaginationDataType } from 'components/pagination/Pagination';
-import { Pokemon } from 'components/pokemon/Pokemon';
 import PokemonContainer from 'components/pokemon/PokemonContainer';
-
-export interface Pokemon {
-    name: string;
-    url: string;
-}
-interface AllPokemonResponse {
-    count: number;
-    results?: Pokemon[];
-}
-
-const getAllPokemonUrl = 'https://pokeapi.co/api/v2/pokemon?limit=100000'
-
-const getAllPokemon = (url: string) => {
-    const pokemonsFromStorage = localStorage.getItem('pokemons')
-    if (pokemonsFromStorage !== null) {
-        const pokemonsParsed = JSON.parse(pokemonsFromStorage) as AllPokemonResponse;
-        return pokemonsParsed;
-    }
-    return fetch(url).then(response  => {
-        return response.json().then((response: AllPokemonResponse): AllPokemonResponse => {
-            localStorage.setItem('pokemons', JSON.stringify(response));
-            return response;
-        }).catch((error) => console.log("json() error: ", error));
-    }).catch((error) => console.log("fetch() error: ", error));
-}
+import { getAllPokemon, getAllPokemonUrl, PokemonArray} from 'api/pokemon';
 
 const Search: FunctionComponent = () => {
     const { data } = useHttp(getAllPokemonUrl, getAllPokemon);
-    const [pokemons, setPokemons] = useState<Pokemon[] | undefined>();
-    const [pokemonsCurrent, setPokemonsCurrent] = useState<Pokemon[] | undefined>();
+    const [pokemons, setPokemons] = useState<PokemonArray>();
+    const [pokemonsCurrent, setPokemonsCurrent] = useState<PokemonArray>();
     const [searchInput, setSearchInput] = useState<string>("");
     const [pokemonUrl, setPokemonUrl] = useState<string>('');
 
-    const searchPokemonByName = useCallback((name: string, pokemonList: Pokemon[] | undefined): Pokemon[] | undefined => {
-        if (pokemonList === undefined) return undefined;
+    const searchPokemonByName = useCallback((name: string, pokemonList: PokemonArray): PokemonArray => {
         return pokemonList.filter((element) => element.name.startsWith(name))
     }, [])
 
@@ -56,7 +30,7 @@ const Search: FunctionComponent = () => {
     const fetchPokemonBySearch = throttle((searchInput: string) => {
         if (data === undefined) return;
         const filteredData = searchPokemonByName(searchInput, data.results);
-        if (filteredData !== undefined)
+        if (filteredData.length !== 0)
             setPokemons(filteredData);
         else {
             setPokemons(data.results);
@@ -77,9 +51,8 @@ const Search: FunctionComponent = () => {
         setPokemonsCurrent(currentPokemons);
     }, [pokemons]);
 
-    console.log("pokemons: ", pokemons)
     return (
-        <div>
+        <div className={styles.wrapper}>
             <div className={styles.searchWrapper}>
                 <div className={styles.headerWrapper}>
                     <div style={{
@@ -100,7 +73,7 @@ const Search: FunctionComponent = () => {
                         pokemons={pokemonsCurrent}
                     />
                 </div>
-                <div style={{ height: '100px', width: '100%'}}>
+                <div className={styles.paginationWrapper}>
                     <Pagination
                         totalRecords={pokemons?.length}
                         pageLimit={15}
