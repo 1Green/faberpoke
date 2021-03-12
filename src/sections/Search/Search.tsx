@@ -16,7 +16,9 @@ const Search: FunctionComponent = () => {
       />
       <div className={styles.searchWrapper}>
         <SearchList onShowPokemon={setPokemonUrl} />
-        {pokemonUrl !== "" && <PokemonContainer pokemonUrl={pokemonUrl} />}
+        {pokemonUrl !== "" && (
+          <PokemonContainer key={pokemonUrl} pokemonUrl={pokemonUrl} />
+        )}
       </div>
     </div>
   );
