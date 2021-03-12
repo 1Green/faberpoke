@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rosterCardWrapper {
+  padding: 10px;
+}
+
+.rosterCardUp {
+  top: -20px;
+}

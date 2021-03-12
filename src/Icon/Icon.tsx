@@ -10,7 +10,7 @@ import { ReactComponent as OrientationIcon } from './iconSvgs/return.svg';
 import { ReactComponent as PokeballCardIcon } from './iconSvgs/pokeballcard.svg';
 import styles from './icon.module.css';
 
-type IconKeys = 'search' | 'default' | 'female' | 'bookmark-on' | 'bookmark-off' | 'shiny' | 'orientation' | 'pokeball';
+type IconKeys = 'search' | 'default' | 'female' | 'bookmark-on' | 'bookmark-off' | 'shiny' | 'orientation' | 'pokeballCard';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> }
 export const icons: Icons = {
     "search": SearchIcon,
@@ -20,13 +20,13 @@ export const icons: Icons = {
     "bookmark-off": BookmarkOffIcon,
     "shiny": ShinyIcon,
     "orientation": OrientationIcon,
-    "pokeball": PokeballCardIcon,
+    "pokeballCard": PokeballCardIcon,
 }
 
 export interface IconProps {
     name: IconKeys;
     color?: string;
-    size?: 'small' | 'medium' | 'large' | 'button' | 'pokeball';
+    size?: 'small' | 'medium' | 'large' | 'button' | 'pokeballCard';
     style?: React.CSSProperties;
     className?: string;
 }
