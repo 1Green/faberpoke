@@ -128,7 +128,7 @@ export function Pokemon({ name, order, weight, height, types, sprites }: PokeApi
             <div className={styles.iconContainer}>
                 <Icon name='pokeballCard' size='pokeballCard' color={'#bdbdbd'} className={styles.pokeballIcon} />
             </div>
-        </div>
+        </div >
     )
 }
 function isBookmarkedPokemon(name: string) {
