@@ -8,11 +8,16 @@ import Icon from '../Icon/Icon';
 
 export type Orientation = 'back' | 'front'
 export type Gender = 'default' | 'female'
+export type Bookmark = 'bookmark-on' | 'bookmark-off'
+
+const colorButtonDisabled = '#CACACA'
+const colorButtonActive = 'black'
 
 export function Pokemon({ name, order, weight, height, types, sprites }: PokeApiResponse) {
     const [shiny, setShiny] = React.useState(false);
     const [orientation, setOrientation] = React.useState<Orientation>('front');
     const [gender, setGender] = React.useState<Gender>('default');
+    const [bookmark, setBookmark] = React.useState<Bookmark>('bookmark-off');
 
     // Sprite logic
     const spriteKey: keyof OrientationShinyGender = getSpritesKey(orientation, shiny, gender)
@@ -45,17 +50,18 @@ export function Pokemon({ name, order, weight, height, types, sprites }: PokeApi
                     <div className={styles.pokemonViewerScreen}>
                         <img className={styles.pokemonImage} src={spriteUrl} alt={name} />
                     </div>
-                    <div className={styles.pokemonButtonContainer} style={{ justifyContent: hasFemale ? 'space-between' : 'flex-end' }}>
+                    <div className={styles.pokemonButtonContainer}>
                         {
                             hasFemale ?
                                 <div className={styles.genderButtonImages}>
-                                    <ButtonImage name='default' size='button' color={gender === 'default' ? 'black' : '#CACACA'} onClick={onClick} disabled={gender === 'default'} />
-                                    <ButtonImage name='female' size='button' color={gender === 'female' ? 'black' : '#CACACA'} onClick={onClick} disabled={gender === 'female'} />
+                                    <ButtonImage name='default' size='button' color={gender === 'default' ? colorButtonActive : colorButtonDisabled} onClick={onClick} disabled={gender === 'default'} />
+                                    <ButtonImage name='female' size='button' color={gender === 'female' ? colorButtonActive : colorButtonDisabled} onClick={onClick} disabled={gender === 'female'} />
                                 </div>
-                                : null
+                                : <div className={styles.emptyDiv}></div>
                         }
+                        <ButtonImage name={bookmark} size='button' onClick={() => setBookmark(() => bookmark === 'bookmark-on' ? 'bookmark-off' : 'bookmark-on')} />
                         <div className={styles.shinyOrientationContainer}>
-                            <ButtonImage name='shiny' size='button' color={shiny ? 'black' : '#CACACA'} onClick={() => setShiny(!shiny)} />
+                            <ButtonImage name='shiny' size='button' color={shiny ? colorButtonActive : colorButtonDisabled} onClick={() => setShiny(!shiny)} />
                             <ButtonImage name='orientation' size='button' onClick={() => setOrientation((prev) => prev === 'front' ? 'back' : 'front')} />
                         </div>
                     </div>

@@ -3,15 +3,24 @@ import cx from 'classnames';
 import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
 import { ReactComponent as MaleIcon } from './iconSvgs/male.svg';
 import { ReactComponent as FemaleIcon } from './iconSvgs/female.svg';
+import { ReactComponent as BookmarkOnIcon } from './iconSvgs/bookmarkon.svg';
+import { ReactComponent as BookmarkOffIcon } from './iconSvgs/bookmarkoff.svg';
 import { ReactComponent as ShinyIcon } from './iconSvgs/shiny.svg';
 import { ReactComponent as OrientationIcon } from './iconSvgs/return.svg';
 import { ReactComponent as PokeballCardIcon } from './iconSvgs/pokeballcard.svg';
 import styles from './icon.module.css';
 
-type IconKeys = 'search' | 'default' | 'female' | 'shiny' | 'orientation' | 'pokeball';
+type IconKeys = 'search' | 'default' | 'female' | 'bookmark-on' | 'bookmark-off' | 'shiny' | 'orientation' | 'pokeball';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> }
 export const icons: Icons = {
-    "search": SearchIcon, "default": MaleIcon, "female": FemaleIcon, "shiny": ShinyIcon, "orientation": OrientationIcon, "pokeball": PokeballCardIcon,
+    "search": SearchIcon,
+    "default": MaleIcon,
+    "female": FemaleIcon,
+    "bookmark-on": BookmarkOnIcon,
+    "bookmark-off": BookmarkOffIcon,
+    "shiny": ShinyIcon,
+    "orientation": OrientationIcon,
+    "pokeball": PokeballCardIcon,
 }
 
 export interface IconProps {
