@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react'
-import styles from './sectionTitle.module.css';
+import styles from './sectionTitle.module.css'
 
 export type SectionTitleProps = {
-    title: string;
-    color?: string;
+    title: string
+    color?: string
 }
 
 export const SectionTitle: FunctionComponent<SectionTitleProps> = ({
     title,
-    color = 'black'
+    color = 'black',
 }) => {
     return (
         <div className={styles.wrapper}>
