@@ -1,14 +1,18 @@
-.icon--small {
+.icon {
+  color: var(--black);
+}
+
+.iconSmall {
   height: 12px;
   width: 12px;
 }
 
-.icon--medium {
+.iconMedium {
   height: 16px;
   width: 16px;
 }
 
-.icon--large {
+.iconLarge {
   height: 20px;
   width: 20px;
 }

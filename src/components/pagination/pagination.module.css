@@ -15,6 +15,9 @@
 }
 
 .link {
+  font-family: Poppins;
+  font-weight: 600;
+  color: var(--gray3);
   padding: 8px 14px;
   cursor: pointer;
   border-right: 1px solid rgb(230, 230, 230);
@@ -25,15 +28,12 @@
 }
 
 .link:hover {
+  color: var(--black);
   background-color: rgb(230, 230, 230);
 }
 
 .linkActive {
-  background-color: #d4ebff;
-}
-
-.linkActive:hover {
-  background-color: #d4ebff;
+  color: var(--black);
 }
 
 .page-link {

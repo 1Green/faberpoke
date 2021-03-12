@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import cx from 'classnames';
 import styles from './pagination.module.css';
 
-type PaginationDataType = {
+export type PaginationDataType = {
     currentPage: number;
     totalPages: number;
     pageLimit: number;
@@ -11,7 +11,7 @@ type PaginationDataType = {
 
 export type PaginationProps = {
     totalRecords?: number;
-    pageLimit?: number;
+    pageLimit: number;
     onPageChanged?: (data: PaginationDataType) => void;
 }
 
@@ -27,6 +27,10 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
 }) => {
     const totalPages: number = Math.ceil(totalRecords / pageLimit);
     const [currentPage, setCurrentPage] = useState<number>(1);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [totalRecords])
 
     const getPageRange = (from: number, to: number, step = 1): number[] => {
         const range = [];
@@ -111,7 +115,7 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
             totalRecords
         }
         onPageChanged !== undefined && onPageChanged(paginationData);
-    }, [currentPage, onPageChanged, pageLimit, totalPages, totalRecords]);
+    }, [currentPage, pageLimit, totalPages, totalRecords, onPageChanged]);
 
     const pages = getPageNumbers();
     return (
@@ -141,4 +145,4 @@ export const Pagination: FunctionComponent<PaginationProps> = ({
     )
 }
 
-export default Pagination
+export default Pagination;

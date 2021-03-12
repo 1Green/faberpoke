@@ -2,7 +2,8 @@ import React, { FunctionComponent, FC, SVGProps } from 'react'
 import cx from 'classnames';
 import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
 import { ReactComponent as CloseIcon } from './iconSvgs/close.svg';
-import './icon.css';
+import { capitalizeFirstLetter } from 'utils';
+import styles from './icon.module.css';
 
 type IconKeys = 'search' | 'close';
 type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
@@ -26,7 +27,7 @@ export const Icon: FunctionComponent<IconProps> = ({
     size = 'medium',
 }) => {
     const CustomIcon = icons[name];
-    const iconClasses = cx(`icon--${size}`, className);
+    const iconClasses = cx(styles.icon, styles[`icon${capitalizeFirstLetter(size)}`], className);
 
     return (
         <CustomIcon

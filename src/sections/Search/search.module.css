@@ -1,0 +1,75 @@
+.wrapper {
+  padding: 20px;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sectionTitle {
+  margin-bottom: 40px;
+}
+
+.listWrapper {
+  position: relative;
+  width: 60%;
+  background-color: var(--gray5);
+  height: 446px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  margin-right: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemonList {
+  flex: 1;
+  overflow: scroll;
+}
+
+.headerWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px 20px 20px;
+}
+
+.paginationWrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: var(--gray5);
+}
+
+.pokedexDotsWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.pokedexDot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin: 0px 5px;
+  background-color: var(--red);
+}
+
+.pokedexDotRed {
+  background-color: var(--red);
+}
+
+.pokedexDotYellow {
+  background-color: var(--yellow);
+}
+
+.pokedexDotGreen {
+  background-color: var(--green);
+}
