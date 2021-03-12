@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0'
 
-import { PokemonType, PokemonTypeProps } from './PokemonType';
+import { PokemonType, PokemonTypeProps } from './PokemonType'
 
 export default {
     title: 'Pokemon Types',
@@ -10,15 +10,15 @@ export default {
             typeOptions: 'select',
         },
     },
-} as Meta;
+} as Meta
 
-const Template: Story<PokemonTypeProps> = (args) => <PokemonType {...args} />;
+const Template: Story<PokemonTypeProps> = (args) => <PokemonType {...args} />
 
-export const Example = Template.bind({});
+export const Example = Template.bind({})
 Example.args = {
     type: {
-        "name": "electric",
-        "url": "https://pokeapi.co/api/v2/type/13/"
+        name: 'electric',
+        url: 'https://pokeapi.co/api/v2/type/13/',
     },
-    imageUrl: "./img/electric.png"
-};
+    imageUrl: './img/electric.png',
+}

@@ -1,41 +1,41 @@
 .wrapper {
-  display: inline-block;
-  border-radius: 30px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  background-color: lightgray;
+    display: inline-block;
+    border-radius: 30px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: lightgray;
 }
 
 .wrapperSimple {
-  background: none;
+    background: none;
 }
 
 .wrapperRounded {
-  border-radius: 50px;
+    border-radius: 50px;
 }
 
 .inputSearch {
-  border: none;
-  outline: none;
-  font-size: 14px;
-  color: var(--black);
-  padding: 0px 10px;
-  letter-spacing: 0.08em;
-  background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: var(--black);
+    padding: 0px 10px;
+    letter-spacing: 0.08em;
+    background: none;
 }
 
 .closeButton {
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 0px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0px;
 }
 
 .closeIcon {
-  fill: black;
+    fill: black;
 }
 
 .closeIcon:hover {
-  fill: red;
+    fill: red;
 }

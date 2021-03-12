@@ -1,22 +1,22 @@
 import React, { FunctionComponent, FC, SVGProps } from 'react'
-import cx from 'classnames';
-import { ReactComponent as SearchIcon } from './iconSvgs/search.svg';
-import { ReactComponent as CloseIcon } from './iconSvgs/close.svg';
-import './icon.css';
+import cx from 'classnames'
+import { ReactComponent as SearchIcon } from './iconSvgs/search.svg'
+import { ReactComponent as CloseIcon } from './iconSvgs/close.svg'
+import './icon.css'
 
-type IconKeys = 'search' | 'close';
-type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> } 
+type IconKeys = 'search' | 'close'
+type Icons = { [key in IconKeys]: FC<SVGProps<SVGSVGElement>> }
 const icons: Icons = {
-    'search': SearchIcon,
-    'close': CloseIcon
+    search: SearchIcon,
+    close: CloseIcon,
 }
 
 export interface IconProps {
-    name: IconKeys;
-    color?: string;
-    size?: 'small' | 'medium' | 'large';
-    style?: React.CSSProperties;
-    className?: string;
+    name: IconKeys
+    color?: string
+    size?: 'small' | 'medium' | 'large'
+    style?: React.CSSProperties
+    className?: string
 }
 
 export const Icon: FunctionComponent<IconProps> = ({
@@ -25,15 +25,10 @@ export const Icon: FunctionComponent<IconProps> = ({
     className,
     size = 'medium',
 }) => {
-    const CustomIcon = icons[name];
-    const iconClasses = cx(`icon--${size}`, className);
+    const CustomIcon = icons[name]
+    const iconClasses = cx(`icon--${size}`, className)
 
-    return (
-        <CustomIcon
-            fill={color}
-            className={iconClasses}
-        />
-    )
+    return <CustomIcon fill={color} className={iconClasses} />
 }
 
-export default Icon;
+export default Icon

@@ -1,23 +1,22 @@
-import React from 'react';
+import React from 'react'
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react/types-6-0'
 
-import { InputSearch, InputSearchProps } from "./InputSearch";
+import { InputSearch, InputSearchProps } from './InputSearch'
 
 export default {
     title: 'Example/InputSearch',
     component: InputSearch,
     argTypes: {
-      value: { control: 'text' },
-      color: { control: 'color' },
-      backgroundColor: { control: 'color' }
+        value: { control: 'text' },
+        color: { control: 'color' },
+        backgroundColor: { control: 'color' },
     },
-} as Meta;
+} as Meta
 
-const Template: Story<InputSearchProps> = (args) => <InputSearch {...args} />;
+const Template: Story<InputSearchProps> = (args) => <InputSearch {...args} />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 
-export const WithIconProps = Template.bind({});
-WithIconProps.args = {
-};
+export const WithIconProps = Template.bind({})
+WithIconProps.args = {}
