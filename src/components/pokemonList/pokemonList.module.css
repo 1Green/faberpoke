@@ -17,6 +17,15 @@
   justify-content: center;
 }
 
+.informationText {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--black);
+  text-align: center;
+}
+
+
 .pokemonListItem:hover {
   background-color: var(--gray4);
 }
