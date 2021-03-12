@@ -8,16 +8,19 @@ export default {
   title: 'Example/RosterCard',
   component: RosterCard,
   argTypes: {
-    color: { control: {
-      type: 'select',
-      options: ['red', 'orange', 'blue', 'yellow', 'green']
-    }},
   },
 } as Meta;
 
 const Template: Story<RosterCardProps> = (args) => <RosterCard {...args} />;
 
-export const RedCard = Template.bind({});
-RedCard.args = {
+export const Charizard = Template.bind({});
+Charizard.args = {
+  pokemonName: 'charizard',
+  pokemonImageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+  empty: false,
   color: 'red',
+};
+export const Pikachu = Template.bind({});
+Pikachu.args = {
+  pokemonName: 'pikachu', pokemonImageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png', empty: false, color: 'yellow'
 };

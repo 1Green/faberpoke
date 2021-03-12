@@ -20,54 +20,129 @@
   background: var(--gray4);
 }
 
-.red {
-  background: rgb(255, 91, 90);
+.normal {
   background: linear-gradient(
     180deg,
-    rgba(255, 91, 90, 1) 0%,
+    var(--normal) 0%,
     rgba(255, 91, 90, 0) 80%
   );
-  border: 1px solid var(--red);
+  border: 1px solid var(--normal);
 }
-
-.blue {
-  background: rgb(88, 99, 235);
-  background: linear-gradient(
-    180deg,
-    rgba(88, 99, 235, 1) 0%,
-    rgba(255, 91, 90, 0) 80%
-  );
-  border: 1px solid var(--blue);
+.fire {
+  background: linear-gradient(180deg, var(--fire) 0%, rgba(255, 91, 90, 0) 80%);
+  border: 1px solid var(--fire);
 }
-
-.green {
-  background: rgb(94, 225, 52);
+.water {
   background: linear-gradient(
     180deg,
-    rgba(94, 225, 52, 1) 0%,
+    var(--water) 0%,
     rgba(255, 91, 90, 0) 80%
   );
-  border: 1px solid var(--green);
+  border: 1px solid var(--water);
 }
-
-.yellow {
-  background: rgb(235, 204, 0);
+.electric {
   background: linear-gradient(
     180deg,
-    rgba(235, 204, 0, 1) 0%,
+    var(--electric) 0%,
     rgba(255, 91, 90, 0) 80%
   );
-  border: 1px solid var(--yellow2);
+  border: 1px solid var(--electric);
 }
-
-.orange {
-  background: rgb(255, 132, 19);
+.grass {
   background: linear-gradient(
     180deg,
-    rgba(255, 132, 19, 1) 0%,
+    var(--grass) 0%,
     rgba(255, 91, 90, 0) 80%
   );
-  border: 1px solid var(--red);
+  border: 1px solid var(--grass);
+}
+.ice {
+  background: linear-gradient(180deg, var(--ice) 0%, rgba(255, 91, 90, 0) 80%);
+  border: 1px solid var(--ice);
+}
+.fighting {
+  background: linear-gradient(
+    180deg,
+    var(--fighting) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--fighting);
+}
+.poison {
+  background: linear-gradient(
+    180deg,
+    var(--poison) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--poison);
+}
+.ground {
+  background: linear-gradient(
+    180deg,
+    var(--ground) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--ground);
+}
+.flying {
+  background: linear-gradient(
+    180deg,
+    var(--flying) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--flying);
+}
+.psychic {
+  background: linear-gradient(
+    180deg,
+    var(--psychic) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--psychic);
+}
+.bug {
+  background: linear-gradient(180deg, var(--bug) 0%, rgba(255, 91, 90, 0) 80%);
+  border: 1px solid var(--bug);
+}
+.rock {
+  background: linear-gradient(180deg, var(--rock) 0%, rgba(255, 91, 90, 0) 80%);
+  border: 1px solid var(--rock);
+}
+.ghost {
+  background: linear-gradient(
+    180deg,
+    var(--ghost) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--ghost);
+}
+.dragon {
+  background: linear-gradient(
+    180deg,
+    var(--dragon) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--dragon);
+}
+.dark {
+  background: linear-gradient(180deg, var(--dark) 0%, rgba(255, 91, 90, 0) 80%);
+  border: 1px solid var(--dark);
+}
+.steel {
+  background: linear-gradient(
+    180deg,
+    var(--steel) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--steel);
+}
+.fairy {
+  background: linear-gradient(
+    180deg,
+    var(--fairy) 0%,
+    rgba(255, 91, 90, 0) 80%
+  );
+  border: 1px solid var(--fairy);
 }
 
 .bgIcon {
